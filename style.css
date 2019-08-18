@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
+.title{
+    height: 200px;
+    margin-top: 0;
+    text-align: center;
+    padding-top: 80px;
+}
+
+label{
+    margin-left: 0;
+}
