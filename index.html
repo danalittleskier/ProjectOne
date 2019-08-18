@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-
-    <title>Trails & Tunes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     
+<title>Trails & Tunes</title>
 </head>
+
 <body>
-    
+    <div class="container">
+        <form id="trail-form">
+            <div class="form-group">
+                <label for="longitude-input">Choose Your Longitude</label>
+                <input type="text" class="form-control" id="longitude-input" placeholder="Enter Longitude">
+            </div>
+            <div class="form-group">
+                <label for="latitude-input">Choose Your Lattitude</label>
+                <input type="text" class="form-control" id="latitude-input" placeholder="Enter Lattitude">
+            </div>
+
+            <button type="submit" id="select-trail" class="btn btn-primary">Get Trail</button>
+        </form>
+
+        <div id="trails-div"></div>
+
+
+
+    </div>
+
+
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>   
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   
     <script src="assets/javascript/app.js"></script>
 </body>
+
 </html>
