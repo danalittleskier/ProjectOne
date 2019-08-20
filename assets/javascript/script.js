@@ -5,6 +5,8 @@
 //     var instances = M.Dropdown.init(elems, {});
 //   });
 
+//hides the table until the user clicks on it
+$("#results").hide();
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
@@ -19,16 +21,33 @@ $("#search").on("click", function (event) {
     },
     method: "GET"
   }).then(function (response) {
+    // Show table (and column names) if there are more than zero results
+    if (response.trails.length > 0) {
+      $("#results").show();
+    }
+    // Add a row to table for each trail
     response.trails.forEach(function(trail) {
-      var trailName = $("<h3>").text(trail.name);
-        var trailDifficulty =$("<h6>").text(trail.difficulty);
-        var trailURL = $("<a target='_blank'>").attr("href", trail.url).append(trailName);
+        // Creates link tag
+        var trailLink = $("<a>").attr("href", trail.url).text(trail.name);
+        // Creates name column
+        var nameColumn = $("<td>").append(trailLink);
+        // Creates difficulty column
+        var difficultyColumn = $("<td>").text(trail.difficulty);
+        // Creates trail image
         var trailImage = $("<img>").attr("src", trail.imgSmall);
-        var trailLength = $("<span>").text("Length "+ trail.length)
-        var trailSummary = $("<h6>").text(trail.summary);
-
-        $("#results").append(trailURL, trailDifficulty,trailImage, trailLength, trailSummary);
+        // Creates image column
+        var imageColumn = $("<td>").append(trailImage);
+        // Creates length column
+        var lengthColumn = $("<td>").text(trail.length);
+        // Creates summary column
+        var summaryColumn = $("<td>").text(trail.summary); 
+        // Creates row element and append columns to row
+        var row = $("<tr>").append(nameColumn, difficultyColumn, imageColumn, lengthColumn, summaryColumn);
+        // Append row to table
+        $("#results").append(row);
 
     })
   });
 });
+
+
