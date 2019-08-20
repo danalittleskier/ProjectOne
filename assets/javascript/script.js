@@ -5,12 +5,8 @@
 //     var instances = M.Dropdown.init(elems, {});
 //   });
 
-$('.dropdown-trigger').dropdown();
 
-$(document).ready(function () {
-  $('select').formSelect();
-});
-
+// on click listener for the serach button
 $("#search").on("click", function (event) {
   var queryURL = "https://www.hikingproject.com/data/get-trails"
   $.ajax({
