@@ -72,9 +72,11 @@ $("#search").on("click", function (event) {
 
 //spotify api example
 $("#music-list").on("click", function (event) {
+  
+  var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
+  var ourProjectURL = encodeURIComponent("https://danalittleskier.github.io/ProjectOne/");
+  var queryURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri="+ ourProjectURL +"&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
-  var ourProjectURL = "https://danalittleskier.github.io/ProjectOne/";
-  var queryURL = "https://accounts.spotify.com/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=" + ourProjectURL + "&scope=user-read-private%20user-read-email&state=34fFs29kd09"
   window.location.href = queryURL;
 
   // console.log(queryURL);
