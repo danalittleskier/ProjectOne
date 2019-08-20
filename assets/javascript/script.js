@@ -21,7 +21,8 @@ $("#search").on("click", function (event) {
     },
     method: "GET"
   }).then(function (response) {
-    //length dropdown
+    //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles). 
+    //Instead of a if/else statment, I did a switch statement with the minimum and maximum miles
     let minLength, maxLength;
     switch ($("#length").val()) {
       case "1":
@@ -42,6 +43,7 @@ $("#search").on("click", function (event) {
       }
     });
     // Show table (and column names) if there are more than zero results
+    //hides it if there are none that match
     if (trails.length > 0) {
       $("#results").show();
       $("#results").empty();
@@ -50,6 +52,7 @@ $("#search").on("click", function (event) {
     }
 
     //add column headers to table dynamically
+    //originally had this hard coded into the HTML, but need to add it with JS, because I needed to empty the table, and it would emply the table headers too
     $("#results").append(
       $(`
         <tr>
