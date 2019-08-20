@@ -2,42 +2,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-     
-<title>Trails & Tunes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- link to stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <!-- jQuery link -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <title>trails&tunes</title>
 </head>
 
 <body>
-    <div class="container">
-        <form id="trail-form">
-            <div class="form-group">
-                <label for="longitude-input">Choose Your Longitude</label>
-                <input type="text" class="form-control" id="longitude-input" placeholder="Enter Longitude">
-            </div>
-            <div class="form-group">
-                <label for="latitude-input">Choose Your Lattitude</label>
-                <input type="text" class="form-control" id="latitude-input" placeholder="Enter Lattitude">
-            </div>
 
-            <button type="submit" id="select-trail" class="btn btn-primary">Get Trail</button>
-        </form>
+  <div>
+    <h5 class="title center-align teal lighten-2">WELCOME TO TRAILS AND TUNES</h5>
 
-        <div id="trails-div"></div>
+  </div>
 
+  <div class="container">
+    <!-- <h6>Intensity</h6> -->
+    <!-- Dropdown Trigger -->
+    <!-- <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a> -->
+    <!-- Dropdown Structure -->
+    <!-- <ul id='dropdown1' class='dropdown-content'>
+      <li><a href="#!">one</a></li>
+      <li><a href="#!">two</a></li>
+      <li><a href="#!">two</a></li>
+    </ul> -->
 
-
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name">City</label>
+      </div>
     </div>
 
+    <div class="row">
+      <div class="input-field col s6 m4">
+        <select>
+          <option value="" disabled selected>Choose the intensity</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Instensity</label>
+      </div>
+      <div class="input-field col s6 m4">
+        <select>
+          <option value="" disabled selected>Choose the length</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Length</label>
+      </div>
+      <div class="input-field col s6 m4">
+        <select>
+          <option value="" disabled selected>Choose the duration</option>
+          <option value="1">Option 1</option>
+          <option value="2">Option 2</option>
+          <option value="3">Option 3</option>
+        </select>
+        <label>Duration</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button id="search" class="btn waves-effect waves-light" type="button" name="action">Search
+          <!-- <i class="material-icons right">send</i> -->
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div id="results">
+        </div>
+      </div>
+    </div>
 
-   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>   
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   
-    <script src="assets/javascript/app.js"></script>
+  </div>
+
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
+
+  <script src="script.js"></script>
+
+
 </body>
 
 </html>
