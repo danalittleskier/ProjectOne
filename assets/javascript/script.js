@@ -86,25 +86,4 @@ $("#music-list").on("click", function (event) {
   //   })
 });
 
-//retrieve latitude & longitude from google api
-//deliver the values to variables for use by trail search ajax
-
-// function getGeocode(){
-//   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-//   var geocodeAddress = $("#last_name").val();
-//   var geocodeKey = "&key=AIzaSyBA9Yt7UsjtvyCblUWBK0z6qb42GT8M8ok";
-//   var geocodeRequest = geocodeURL + geocodeAddress + geocodeKey;
-//   $.ajax({
-//     url : geocodeRequest,
-//     method: "GET"
-//   }).then(function(response){
-//     geoReturn = response.results[0];
-//     geoLat = geoReturn.geometry.location.lat;
-//     geoLng = geoReturn.geometry.location.lng;
-//     geoAddr = geoReturn.formatted_address;
-//   }).then(function(){
-//     console.log(geoReturn)
-//   });
-// }
-
 
