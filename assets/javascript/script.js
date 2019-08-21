@@ -5,14 +5,51 @@
 //     var instances = M.Dropdown.init(elems, {});
 //   });
 
+//global variables for color difficulties
+var difficultyMap = {
+    green: "easy",
+    greenBlue: "easy to medium",
+    blue: "medium",
+    blueBlack: "medium to difficult",
+    black: "difficult",
+}
 //hides the table until the user clicks on it
 $("#results").hide();
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
+
+  // This tells them they need to pick parameters, if they are missing any
+  $("#searchError").empty();
+  let city = $("#city").val();
+  let hasCity = city !== undefined && city !== null && city !== "";
+  if (hasCity === false) {
+    $("#searchError").append("You must provide a city to search.<br>");
+  }
+  let intensity = $("#intensity").val();
+  let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
+  if (hasIntensity === false) {
+    $("#searchError").append("You must select a trail intensity.<br>");
+  }
+  let length = $("#length").val();
+  let hasLength = length !== undefined && length !== null && length !== "";
+  if (hasLength === false) {
+    $("#searchError").append("You must select a trail length.<br>");
+  }
+  let duration = $("#duration").val();
+  let hasDuration = duration !== undefined && duration !== null && duration !== "";
+  if (hasDuration === false) {
+    $("#searchError").append("You must select a trail duration.<br>");
+  }
+  let valid = hasCity && hasIntensity && hasLength && hasDuration;
+  if (valid === false) {
+    return;
+  }
+
+
   //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-  var geocodeAddress = $("#last_name").val();
+  var geocodeAddress = $("#city").val();
   var geocodeKey = "&key=AIzaSyBA9Yt7UsjtvyCblUWBK0z6qb42GT8M8ok";
   var geocodeRequest = geocodeURL + geocodeAddress + geocodeKey;
   $.ajax({
@@ -23,7 +60,7 @@ $("#search").on("click", function (event) {
     let geoLat = geoReturn.geometry.location.lat;
     let geoLng = geoReturn.geometry.location.lng;
     //not sure where to use this yet
-    //let geoAddr = geoReturn.formatted_address;
+   //let geoAddr = geoReturn.formatted_address;
 
 
     let queryURL = "https://www.hikingproject.com/data/get-trails";
@@ -37,6 +74,12 @@ $("#search").on("click", function (event) {
       },
       method: "GET"
     }).then(function (response) {
+      //intensity dropdown
+      let trails = response.trails.filter(function(trail){
+        if (trail.difficulty === $("#intensity").val()){
+          return true;
+        }
+      })
       //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles). 
       //Instead of a if/else statment, I did a switch statement with the minimum and maximum miles
       let minLength, maxLength;
@@ -53,7 +96,7 @@ $("#search").on("click", function (event) {
           minLength = 15;
           break;
       }
-      let trails = response.trails.filter(function (trail) {
+      trails = trails.filter(function (trail) {
         if (trail.length >= minLength && trail.length <= maxLength) {
           return true;
         }
@@ -65,6 +108,7 @@ $("#search").on("click", function (event) {
         $("#results").empty();
       } else {
         $("#results").hide();
+        $("#searchError").append("No Results Found <br>");
       }
 
       //add column headers to table dynamically
@@ -110,7 +154,7 @@ $("#search").on("click", function (event) {
                 <a href="${trail.url}">${trail.name}</a>
               </td>
               <td>
-                ${trail.difficulty}
+                ${difficultyMap[trail.difficulty]}
               </td>
               <td>
                 <img src="${trail.imgSmall}">
