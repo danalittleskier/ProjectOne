@@ -6,3 +6,5 @@ $('.dropdown-trigger').dropdown();
 $(document).ready(function () {
   $('select').formSelect();
 });
+
+// M.toast({html: 'Nope Wrong'})

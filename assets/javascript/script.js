@@ -24,7 +24,8 @@ $("#search").on("click", function (event) {
   let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
-    $("#searchError").append("You must provide a city to search.<br>");
+    // $("#searchError").append("You must provide a city to search.<br>");
+    M.toast({html: 'You must provide a city to search'});
   }
   let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
@@ -39,7 +40,8 @@ $("#search").on("click", function (event) {
   let duration = $("#duration").val();
   let hasDuration = duration !== undefined && duration !== null && duration !== "";
   if (hasDuration === false) {
-    $("#searchError").append("You must select a trail duration.<br>");
+    // $("#searchError").append("You must select a trail duration.<br>");
+    M.toast({html: 'You must select a trail duration'})
   }
   let valid = hasCity && hasIntensity && hasLength && hasDuration;
   if (valid === false) {
@@ -108,7 +110,9 @@ $("#search").on("click", function (event) {
         $("#results").empty();
       } else {
         $("#results").hide();
-        $("#searchError").append("No Results Found <br>");
+        // $("#searchError").append("No Results Found <br>");
+        let errorState = $("#searchError").append("<img>");
+        errorState.append(srcC:"assets/images/test.svg");
       }
 
       //add column headers to table dynamically
@@ -185,6 +189,14 @@ $("#music-list").on("click", function (event) {
 
   window.location.href = queryURL;
 
+  $.ajax({
+    url: 'https://api.spotify.com/v1/me',
+    headers: {
+        'Authorization': 'Bearer ' + accessToken
+    },
+        success: function(response) {
+        console.log(response);
+    }
   // console.log(queryURL);
   // $.ajax({
   //   url: queryURL,
@@ -192,6 +204,5 @@ $("#music-list").on("click", function (event) {
   // }).then(function (response) {
   //   console.log(response);
   //   })
-});
-
-
+  })
+})
