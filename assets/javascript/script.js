@@ -8,11 +8,45 @@
 //hides the table until the user clicks on it
 $("#results").hide();
 
+// Validates user options when search is clicked.
+function validate() {
+  // Returns true if all fields have values. Otherwise false.
+  return valid;
+}
+
 // on click listener for the serach button
 $("#search").on("click", function (event) {
+
+  // Validate if user has provided options.
+  $("#searchError").empty();
+  let location = $("#location").val();
+  let hasLocation = location !== undefined && location !== null && location !== "";
+  if (hasLocation === false) {
+    $("#searchError").append("You must provide a location to search.<br>");
+  }
+  let intensity = $("#intensity").val();
+  let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
+  if (hasIntensity === false) {
+    $("#searchError").append("You must select a trail intensity.<br>");
+  }
+  let length = $("#length").val();
+  let hasLength = length !== undefined && length !== null && length !== "";
+  if (hasLength === false) {
+    $("#searchError").append("You must select a trail length.<br>");
+  }
+  let duration = $("#duration").val();
+  let hasDuration = duration !== undefined && duration !== null && duration !== "";
+  if (hasDuration === false) {
+    $("#searchError").append("You must select a trail duration.<br>");
+  }
+  let valid = hasLocation && hasIntensity && hasLength && hasDuration;
+  if (valid === false) {
+    return;
+  }
+
   //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-  var geocodeAddress = $("#last_name").val();
+  var geocodeAddress = $("#location").val();
   var geocodeKey = "&key=AIzaSyBA9Yt7UsjtvyCblUWBK0z6qb42GT8M8ok";
   var geocodeRequest = geocodeURL + geocodeAddress + geocodeKey;
   $.ajax({
@@ -37,7 +71,7 @@ $("#search").on("click", function (event) {
       },
       method: "GET"
     }).then(function (response) {
-      //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles). 
+      //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles).
       //Instead of a if/else statment, I did a switch statement with the minimum and maximum miles
       let minLength, maxLength;
       switch ($("#length").val()) {
@@ -77,7 +111,7 @@ $("#search").on("click", function (event) {
           <th>Image</th>
           <th>Length</th>
           <th>Summary</th>
-        </tr>  
+        </tr>
       `)
       );
 
@@ -96,7 +130,7 @@ $("#search").on("click", function (event) {
         // // Creates length column
         // var lengthColumn = $("<td>").text(trail.length);
         // // Creates summary column
-        // var summaryColumn = $("<td>").text(trail.summary); 
+        // var summaryColumn = $("<td>").text(trail.summary);
         // // Creates row element and append columns to row
         // var row = $("<tr>").append(nameColumn, difficultyColumn, imageColumn, lengthColumn, summaryColumn);
         // // Append row to table
@@ -120,8 +154,8 @@ $("#search").on("click", function (event) {
               </td>
               <td>
                 ${trail.summary}
-              </td>      
-            </tr>     
+              </td>
+            </tr>
           `)
         );
 
@@ -149,5 +183,3 @@ $("#music-list").on("click", function (event) {
   //   console.log(response);
   //   })
 });
-
-
