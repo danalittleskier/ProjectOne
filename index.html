@@ -38,18 +38,20 @@
 
     <div class="row">
       <div class="input-field col s12">
-        <input id="last_name" type="text" class="validate">
-        <label for="last_name">City</label>
+        <input id="city" type="text" class="validate">
+        <label for="city">City</label>
       </div>
     </div>
 
     <div class="row">
       <div class="input-field col s6 m4">
-        <select>
+        <select id="intensity">
           <option value="" disabled selected>Choose the intensity</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+          <option value="green">Easy</option>
+          <option value="greenBlue">Easy to Medium</option>
+          <option value="blue">Medium</option>
+          <option value="blueBlack">Medium to Difficult</option>
+          <option value="black">Difficult</option>
         </select>
         <label>Instensity</label>
       </div>
@@ -63,7 +65,7 @@
         <label>Length</label>
       </div>
       <div class="input-field col s6 m4">
-        <select>
+        <select id="duration">
           <option value="" disabled selected>Choose the duration</option>
           <option value="1">Option 1</option>
           <option value="2">Option 2</option>
@@ -77,6 +79,8 @@
         <button id="search" class="btn waves-effect waves-light" type="button" name="action">Search
           <!-- <i class="material-icons right">send</i> -->
         </button>
+        <div id="searchError">
+      </div>
       </div>
     </div>
     <div class="row">
