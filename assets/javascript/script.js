@@ -4,7 +4,7 @@ var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
 var ourProjectURL = (typeof localURL !== "undefined") ? localURL : "https://danalittleskier.github.io/ProjectOne/";
 
 var encodedProjectURL = encodeURIComponent(ourProjectURL);
-var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri=" + encodedProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
+var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=token&redirect_uri=" + encodedProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
 // console.log($('.dropdown-trigger').length);
 // document.addEventListener('DOMContentLoaded', function() {
@@ -15,9 +15,9 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
 //global variables for color difficulties
 var difficultyMap = {
   green: "easy",
-  greenBlue: "easy to moderate",
-  blue: "moderate",
-  blueBlack: "moderate to difficult",
+  greenBlue: "easy to medium",
+  blue: "medium",
+  blueBlack: "medium to difficult",
   black: "difficult",
 }
 //hides the table until the user clicks on it
@@ -31,8 +31,7 @@ $("#search").on("click", function (event) {
   let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
-    // $("#searchError").append("You must provide a city to search.<br>");
-    M.toast({html: 'You must provide a city to search'});
+    $("#searchError").append("You must provide a city to search.<br>");
   }
   let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
@@ -117,22 +116,21 @@ $("#search").on("click", function (event) {
       } else {
         $("#results").hide();
         $("#searchError").append("No Results Found <br>");
-        // $("#searchError").append("<img src= 'assets/images/test.svg'>");
       }
 
       //add column headers to table dynamically
       //originally had this hard coded into the HTML, but need to add it with JS, because I needed to empty the table, and it would emply the table headers too
-      // $("#results").append(
-      //   $(`
-      //   <tr>
-      //     <th>Name</th>
-      //     <th>Difficulty</th>
-      //     <th>Image</th>
-      //     <th>Length</th>
-      //     <th>Summary</th>
-      //   </tr>  
-      // `)
-      // );
+      $("#results").append(
+        $(`
+        <tr>
+          <th>Name</th>
+          <th>Difficulty</th>
+          <th>Image</th>
+          <th>Length</th>
+          <th>Summary</th>
+        </tr>  
+      `)
+      );
 
       // Add a row to table for each trail
       trails.forEach(function (trail) {
@@ -156,44 +154,27 @@ $("#search").on("click", function (event) {
         // $("#results").append(row);
 
         //changed above code from JQuery tag building to JS template string
-        // $("#results").append(
-        //   $(`
-        //     <tr>
-        //       <td>
-        //         <a href="${trail.url}">${trail.name}</a>
-        //       </td>
-        //       <td>
-        //         ${difficultyMap[trail.difficulty]}
-        //       </td>
-        //       <td>
-        //         <img src="${trail.imgSmall}">
-        //       </td>
-        //       <td>
-        //         ${trail.length}
-        //       </td>
-        //       <td>
-        //         ${trail.summary}
-        //       </td>      
-        //     </tr>     
-        //   `)
-        // );
-
-        $("#resultsCollapsible").append(`
-          <li>
-            <div class="collapsible-header">
-              <span style="font-weight: bold;">
-                  ${trail.name}
-              </span> 
-            </div>
-            <div class="collapsible-body flex">
-              <img src="${trail.imgSmall}">
-              <p>${trail.summary}</p>
-              ${difficultyMap[trail.difficulty]} | ${trail.length} mi
-              <button href="${trail.url}">Look here</button>
-              <a href="${trail.url}">More Info</a>
-            </div>
-          </li>
-        `);
+        $("#results").append(
+          $(`
+            <tr>
+              <td>
+                <a href="${trail.url}">${trail.name}</a>
+              </td>
+              <td>
+                ${difficultyMap[trail.difficulty]}
+              </td>
+              <td>
+                <img src="${trail.imgSmall}">
+              </td>
+              <td>
+                ${trail.length}
+              </td>
+              <td>
+                ${trail.summary}
+              </td>      
+            </tr>     
+          `)
+        );
 
       })
     });
@@ -205,43 +186,40 @@ $("#search").on("click", function (event) {
 //spotify api example
 $("#music-list").on("click", function (event) {
 
-
   window.location.href = spotifyURL;
 
-
-
-  // console.log(queryURL);
-  // $.ajax({
-  //   url: queryURL,
-  //   method: "GET"
-  // }).then(function (response) {
-  //   console.log(response);
-  //   })
 });
 
 $(document).ready(function () {
-  var urlParams = new URLSearchParams(window.location.search);
-  accessCode = urlParams.get('code');
-  var entries = urlParams.entries();
-  console.log(accessCode);
+  //Changed to grabing hash
+  var urlParams = new URLSearchParams(window.location.hash.substr(1));
+  accessCode = urlParams.get('access_token');
+
 
   if (accessCode) {
-    var spotifyPostURL = "https://accounts.spotify.com/api/token";
+    // var spotifyPostURL = "https://accounts.spotify.com/api/token";
+    // $.ajax({
+    //   url: spotifyPostURL,
+    //   data: {
+    //     grant_type: "authorization_code",
+    //     code: accessCode,
+    //     redirect_uri: ourProjectURL,
+    //     client_id: clientID,
+    //     client_secret: "5065d0f119f5424796fbc25fc5346c4c"
+    //   },
+    //   method: "POST"
+    // }).then(function (response) {
+    //   console.log(response);
+    // })
     $.ajax({
-      url: spotifyPostURL,
-      data: {
-        grant_type: "authorization_code",
-        code: accessCode,
-        redirect_uri: ourProjectURL,
-        client_id: clientID,
-        client_secret: "5065d0f119f5424796fbc25fc5346c4c"
+      url: 'https://api.spotify.com/v1/me',
+      headers: {
+        'Authorization': 'Bearer ' + accessCode
       },
-      method: "POST"
-    }).then(function (response) {
-      console.log(response);
-    })
+      success: function (response) {
+        console.log(response);
+      }
+    });
   }
-
-
 });
 
