@@ -1,7 +1,7 @@
 var accessCode;
 var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
 
-var ourProjectURL = (typeof localURL !== undefined) ? localURL : "https://danalittleskier.github.io/ProjectOne/";
+var ourProjectURL = (typeof localURL !== "undefined") ? localURL : "https://danalittleskier.github.io/ProjectOne/";
 
 var encodedProjectURL = encodeURIComponent(ourProjectURL);
 var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri=" + encodedProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
