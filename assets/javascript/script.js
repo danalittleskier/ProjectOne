@@ -186,13 +186,7 @@ $("#music-list").on("click", function (event) {
   window.location.href = queryURL;
 
 
-  var urlParams = new URLSearchParams(window.location.search);
-
-  var keys = urlParams.keys();
-  for(key of keys) { 
-    console.log(key); 
-}
-
+  
   // console.log(queryURL);
   // $.ajax({
   //   url: queryURL,
@@ -202,4 +196,17 @@ $("#music-list").on("click", function (event) {
   //   })
 });
 
+$(document).ready(function () {
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var keys = urlParams.keys();
+  for(key of keys) { 
+    console.log(key); 
+}
+
+var entries = urlParams.entries();
+for(pair of entries) { 
+  console.log(pair[0], pair[1]); 
+}
+  })
 
