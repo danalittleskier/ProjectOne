@@ -1,10 +1,3 @@
-var accessCode;
-var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
-
-var ourProjectURL = (typeof localURL !== "undefined") ? localURL : "https://danalittleskier.github.io/ProjectOne/";
-
-var encodedProjectURL = encodeURIComponent(ourProjectURL);
-var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=token&redirect_uri=" + encodedProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
 // console.log($('.dropdown-trigger').length);
 // document.addEventListener('DOMContentLoaded', function() {
@@ -199,43 +192,5 @@ $("#search").on("click", function (event) {
 
 
 
-//spotify api example
-$("#music-list").on("click", function (event) {
 
-  window.location.href = spotifyURL;
-
-});
-
-$(document).ready(function () {
-  //Changed to grabing hash
-  var urlParams = new URLSearchParams(window.location.hash.substr(1));
-  accessCode = urlParams.get('access_token');
-
-
-  if (accessCode) {
-    // var spotifyPostURL = "https://accounts.spotify.com/api/token";
-    // $.ajax({
-    //   url: spotifyPostURL,
-    //   data: {
-    //     grant_type: "authorization_code",
-    //     code: accessCode,
-    //     redirect_uri: ourProjectURL,
-    //     client_id: clientID,
-    //     client_secret: "5065d0f119f5424796fbc25fc5346c4c"
-    //   },
-    //   method: "POST"
-    // }).then(function (response) {
-    //   console.log(response);
-    // })
-    $.ajax({
-      url: 'https://api.spotify.com/v1/me',
-      headers: {
-        'Authorization': 'Bearer ' + accessCode
-      },
-      success: function (response) {
-        console.log(response);
-      }
-    });
-  }
-});
 
