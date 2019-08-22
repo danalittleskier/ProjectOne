@@ -15,9 +15,9 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
 //global variables for color difficulties
 var difficultyMap = {
   green: "easy",
-  greenBlue: "easy to medium",
-  blue: "medium",
-  blueBlack: "medium to difficult",
+  greenBlue: "easy to moderate",
+  blue: "moderate",
+  blueBlack: "moderate to difficult",
   black: "difficult",
 }
 //hides the table until the user clicks on it
@@ -122,17 +122,17 @@ $("#search").on("click", function (event) {
 
       //add column headers to table dynamically
       //originally had this hard coded into the HTML, but need to add it with JS, because I needed to empty the table, and it would emply the table headers too
-      $("#results").append(
-        $(`
-        <tr>
-          <th>Name</th>
-          <th>Difficulty</th>
-          <th>Image</th>
-          <th>Length</th>
-          <th>Summary</th>
-        </tr>  
-      `)
-      );
+      // $("#results").append(
+      //   $(`
+      //   <tr>
+      //     <th>Name</th>
+      //     <th>Difficulty</th>
+      //     <th>Image</th>
+      //     <th>Length</th>
+      //     <th>Summary</th>
+      //   </tr>  
+      // `)
+      // );
 
       // Add a row to table for each trail
       trails.forEach(function (trail) {
@@ -188,7 +188,7 @@ $("#search").on("click", function (event) {
             <img src="${trail.imgSmall}">
             <p>${trail.summary}</p>
             ${difficultyMap[trail.difficulty]} | ${trail.length} mi
-            <a href="${trail.url}">More Info</a>
+            <a href="${trail.url}"target="_blank">More Info</a>
           </div>
         </li>
       `);
