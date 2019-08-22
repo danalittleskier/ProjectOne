@@ -1,4 +1,8 @@
 var accessCode;
+var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
+var ourProjectURL = encodeURIComponent("https://danalittleskier.github.io/ProjectOne/");
+var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri=" + ourProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
+
 // console.log($('.dropdown-trigger').length);
 // document.addEventListener('DOMContentLoaded', function() {
 //     var elems = document.querySelectorAll('.dropdown-trigger');
@@ -7,11 +11,11 @@ var accessCode;
 
 //global variables for color difficulties
 var difficultyMap = {
-    green: "easy",
-    greenBlue: "easy to medium",
-    blue: "medium",
-    blueBlack: "medium to difficult",
-    black: "difficult",
+  green: "easy",
+  greenBlue: "easy to medium",
+  blue: "medium",
+  blueBlack: "medium to difficult",
+  black: "difficult",
 }
 //hides the table until the user clicks on it
 $("#results").hide();
@@ -60,7 +64,7 @@ $("#search").on("click", function (event) {
     let geoLat = geoReturn.geometry.location.lat;
     let geoLng = geoReturn.geometry.location.lng;
     //not sure where to use this yet
-   //let geoAddr = geoReturn.formatted_address;
+    //let geoAddr = geoReturn.formatted_address;
 
 
     let queryURL = "https://www.hikingproject.com/data/get-trails";
@@ -75,8 +79,8 @@ $("#search").on("click", function (event) {
       method: "GET"
     }).then(function (response) {
       //intensity dropdown
-      let trails = response.trails.filter(function(trail){
-        if (trail.difficulty === $("#intensity").val()){
+      let trails = response.trails.filter(function (trail) {
+        if (trail.difficulty === $("#intensity").val()) {
           return true;
         }
       })
@@ -179,14 +183,11 @@ $("#search").on("click", function (event) {
 //spotify api example
 $("#music-list").on("click", function (event) {
 
-  var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
-  var ourProjectURL = encodeURIComponent("https://danalittleskier.github.io/ProjectOne/");
-  var queryURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri=" + ourProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
-  window.location.href = queryURL;
+  window.location.href = spotifyURL;
 
 
-  
+
   // console.log(queryURL);
   // $.ajax({
   //   url: queryURL,
@@ -199,14 +200,27 @@ $("#music-list").on("click", function (event) {
 $(document).ready(function () {
   var urlParams = new URLSearchParams(window.location.search);
 
-  var keys = urlParams.keys();
-  for(key of keys) { 
-    console.log(key); 
-}
-
-var entries = urlParams.entries();
-for(pair of entries) { 
-  console.log(pair[0], pair[1]); 
-}
+  var entries = urlParams.entries();
+  for (pair of entries) {
+    //console.log(pair[0], pair[1]); 
+    if (pair[0] === 'code') {
+      accessCode = pair[1];
+      console.log(accessCode);
+    }
+  }
+  var spotifyPostURL = "https://accounts.spotify.com/api/token";
+  $.ajax({
+    url: spotifyPostURL,
+    data: {
+      grant_type: "authorization_code",
+      code: accessCode,
+      redirect_uri: spotifyURL,
+      client_id: clientID
+    },
+    method: "POST"
+  }).then(function (response) {
+    console.log(response);
   })
+
+});
 
