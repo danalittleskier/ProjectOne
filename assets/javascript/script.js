@@ -186,6 +186,17 @@ $("#music-list").on("click", function (event) {
   window.location.href = queryURL;
 
 
+  
+  // console.log(queryURL);
+  // $.ajax({
+  //   url: queryURL,
+  //   method: "GET"
+  // }).then(function (response) {
+  //   console.log(response);
+  //   })
+});
+
+$(document).ready(function () {
   var urlParams = new URLSearchParams(window.location.search);
 
   var keys = urlParams.keys();
@@ -197,13 +208,5 @@ var entries = urlParams.entries();
 for(pair of entries) { 
   console.log(pair[0], pair[1]); 
 }
-  // console.log(queryURL);
-  // $.ajax({
-  //   url: queryURL,
-  //   method: "GET"
-  // }).then(function (response) {
-  //   console.log(response);
-  //   })
-});
-
+  })
 
