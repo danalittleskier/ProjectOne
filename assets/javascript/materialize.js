@@ -6,3 +6,8 @@ $('.dropdown-trigger').dropdown();
 $(document).ready(function () {
   $('select').formSelect();
 });
+
+
+$(document).ready(function(){
+  $('.collapsible').collapsible();
+});

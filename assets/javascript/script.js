@@ -15,9 +15,9 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
 //global variables for color difficulties
 var difficultyMap = {
   green: "easy",
-  greenBlue: "easy to medium",
-  blue: "medium",
-  blueBlack: "medium to difficult",
+  greenBlue: "easy to moderate",
+  blue: "moderate",
+  blueBlack: "moderate to difficult",
   black: "difficult",
 }
 //hides the table until the user clicks on it
@@ -31,7 +31,8 @@ $("#search").on("click", function (event) {
   let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
-    $("#searchError").append("You must provide a city to search.<br>");
+    // $("#searchError").append("You must provide a city to search.<br>");
+    M.toast({html: 'You must provide a city to search'});
   }
   let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
@@ -116,21 +117,22 @@ $("#search").on("click", function (event) {
       } else {
         $("#results").hide();
         $("#searchError").append("No Results Found <br>");
+        // $("#searchError").append("<img src= 'assets/images/test.svg'>");
       }
 
       //add column headers to table dynamically
       //originally had this hard coded into the HTML, but need to add it with JS, because I needed to empty the table, and it would emply the table headers too
-      $("#results").append(
-        $(`
-        <tr>
-          <th>Name</th>
-          <th>Difficulty</th>
-          <th>Image</th>
-          <th>Length</th>
-          <th>Summary</th>
-        </tr>  
-      `)
-      );
+      // $("#results").append(
+      //   $(`
+      //   <tr>
+      //     <th>Name</th>
+      //     <th>Difficulty</th>
+      //     <th>Image</th>
+      //     <th>Length</th>
+      //     <th>Summary</th>
+      //   </tr>  
+      // `)
+      // );
 
       // Add a row to table for each trail
       trails.forEach(function (trail) {
@@ -154,27 +156,44 @@ $("#search").on("click", function (event) {
         // $("#results").append(row);
 
         //changed above code from JQuery tag building to JS template string
-        $("#results").append(
-          $(`
-            <tr>
-              <td>
-                <a href="${trail.url}">${trail.name}</a>
-              </td>
-              <td>
-                ${difficultyMap[trail.difficulty]}
-              </td>
-              <td>
-                <img src="${trail.imgSmall}">
-              </td>
-              <td>
-                ${trail.length}
-              </td>
-              <td>
-                ${trail.summary}
-              </td>      
-            </tr>     
-          `)
-        );
+        // $("#results").append(
+        //   $(`
+        //     <tr>
+        //       <td>
+        //         <a href="${trail.url}">${trail.name}</a>
+        //       </td>
+        //       <td>
+        //         ${difficultyMap[trail.difficulty]}
+        //       </td>
+        //       <td>
+        //         <img src="${trail.imgSmall}">
+        //       </td>
+        //       <td>
+        //         ${trail.length}
+        //       </td>
+        //       <td>
+        //         ${trail.summary}
+        //       </td>      
+        //     </tr>     
+        //   `)
+        // );
+
+        $("#resultsCollapsible").append(`
+          <li>
+            <div class="collapsible-header">
+              <span style="font-weight: bold;">
+                  ${trail.name}
+              </span> 
+            </div>
+            <div class="collapsible-body flex">
+              <img src="${trail.imgSmall}">
+              <p>${trail.summary}</p>
+              ${difficultyMap[trail.difficulty]} | ${trail.length} mi
+              <button href="${trail.url}">Look here</button>
+              <a href="${trail.url}">More Info</a>
+            </div>
+          </li>
+        `);
 
       })
     });
