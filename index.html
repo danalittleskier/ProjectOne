@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,9 +49,9 @@
         <select id="intensity">
           <option value="" disabled selected>Choose the intensity</option>
           <option value="green">Easy</option>
-          <option value="greenBlue">Easy to Medium</option>
-          <option value="blue">Medium</option>
-          <option value="blueBlack">Medium to Difficult</option>
+          <option value="greenBlue">Easy to Moderate</option>
+          <option value="blue">Moderate</option>
+          <option value="blueBlack">Moderate to Difficult</option>
           <option value="black">Difficult</option>
         </select>
         <label>Instensity</label>
@@ -92,8 +93,10 @@
           </div>
     <div class="row">
       <div class="col s12">
-        <table id="results">
-        </table>
+        <ul id="resultsCollapsible" class="collapsible">
+        </ul>
+        <!-- <table id="resultsTable">
+        </table> -->
       </div>
     </div>
 
@@ -104,7 +107,6 @@
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
 
-  <script src="assets/javascript/localhost.js"></script>
   <script src="assets/javascript/script.js"></script>
   <script src="assets/javascript/materialize.js"></script>
 
