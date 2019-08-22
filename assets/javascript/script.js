@@ -1,4 +1,4 @@
-
+var accessCode;
 // console.log($('.dropdown-trigger').length);
 // document.addEventListener('DOMContentLoaded', function() {
 //     var elems = document.querySelectorAll('.dropdown-trigger');
@@ -184,6 +184,14 @@ $("#music-list").on("click", function (event) {
   var queryURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=code&redirect_uri=" + ourProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
   window.location.href = queryURL;
+
+
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var keys = urlParams.keys();
+  for(key of keys) { 
+    console.log(key); 
+}
 
   // console.log(queryURL);
   // $.ajax({
