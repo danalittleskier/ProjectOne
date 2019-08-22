@@ -193,6 +193,10 @@ $("#music-list").on("click", function (event) {
     console.log(key); 
 }
 
+var entries = urlParams.entries();
+for(pair of entries) { 
+  console.log(pair[0], pair[1]); 
+}
   // console.log(queryURL);
   // $.ajax({
   //   url: queryURL,
