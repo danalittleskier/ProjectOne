@@ -7,4 +7,7 @@ $(document).ready(function () {
   $('select').formSelect();
 });
 
-// M.toast({html: 'Nope Wrong'})
+$(document).ready(function(){
+  $('.collapsible').collapsible();
+});
+      

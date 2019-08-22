@@ -111,8 +111,8 @@ $("#search").on("click", function (event) {
       } else {
         $("#results").hide();
         // $("#searchError").append("No Results Found <br>");
-        let errorState = $("#searchError").append("<img>");
-        errorState.append(srcC:"assets/images/test.svg");
+          $("#searchError").append("<img src= 'assets/images/test.svg'>");
+        // errorState.append(src= "assets/images/test.svg");
       }
 
       //add column headers to table dynamically
@@ -153,23 +153,32 @@ $("#search").on("click", function (event) {
         //changed above code from JQuery tag building to JS template string
         $("#results").append(
           $(`
-            <tr>
-              <td>
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">
                 <a href="${trail.url}">${trail.name}</a>
-              </td>
-              <td>
+                </div>
+              </li>
+              <li>
+                <div>
                 ${difficultyMap[trail.difficulty]}
-              </td>
-              <td>
+                </div>
+              </li>
+              <li>
+                <div>
                 <img src="${trail.imgSmall}">
-              </td>
-              <td>
+                </div>
+              </li>
+              <li>
+                <div>
                 ${trail.length}
-              </td>
-              <td>
+              </li>
+              <li>
+                <div>
                 ${trail.summary}
-              </td>      
-            </tr>     
+                </div>
+              </li>      
+            </ul>     
           `)
         );
 
@@ -206,3 +215,16 @@ $("#music-list").on("click", function (event) {
   //   })
   })
 })
+
+
+// $(document).ready(function(){
+//   console.log("ready");
+
+  // let url = window.location.href; 
+  // console.log(url);
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const myParam = urlParams.get('code');
+//   console.log(myParam);
+
+//   if(myParam)
+// });
