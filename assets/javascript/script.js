@@ -186,6 +186,13 @@ $("#music-list").on("click", function (event) {
   window.location.href = queryURL;
 
 
+  var urlParams = new URLSearchParams(window.location.search);
+
+  var keys = urlParams.keys();
+  for(key of keys) { 
+    console.log(key); 
+}
+
   // console.log(queryURL);
   // $.ajax({
   //   url: queryURL,
