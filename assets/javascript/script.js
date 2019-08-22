@@ -21,7 +21,7 @@ var difficultyMap = {
   black: "difficult",
 }
 //hides the table until the user clicks on it
-$("#results").hide();
+$("resultsCollapsible").hide();
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
@@ -112,10 +112,10 @@ $("#search").on("click", function (event) {
       // Show table (and column names) if there are more than zero results
       //hides it if there are none that match
       if (trails.length > 0) {
-        $("#results").show();
-        $("#results").empty();
+        $("#resultsCollapsible").show();
+        $("#resultsCollapsible").empty();
       } else {
-        $("#results").hide();
+        $("resultsCollapsible").hide();
         $("#searchError").append("No Results Found <br>");
         // $("#searchError").append("<img src= 'assets/images/test.svg'>");
       }
