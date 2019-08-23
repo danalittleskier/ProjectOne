@@ -109,8 +109,8 @@ $("#search").on("click", function (event) {
         $("#resultsCollapsible").empty();
       } else {
         $("resultsCollapsible").hide();
-        $("#searchError").append("No Results Found <br>");
-        // $("#searchError").append("<img src= 'assets/images/test.svg'>");
+        // $("#searchError").append("<h5> 'Looks like you're a little off the trail, we couldn't find anything to match your search. Try adjusting the difficulty or increasing the distance' </h5>");
+        $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
       }
 
       //add column headers to table dynamically
