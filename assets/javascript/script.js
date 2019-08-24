@@ -24,7 +24,7 @@ $("#search").on("click", function (event) {
   let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
-    $("#searchError").append("You must provide a city to search.<br>");
+    // $("#searchError").append("You must provide a city to search.<br>");
     M.toast({html: 'You must provide a city to search'});
   }
   let intensity = $("#intensity").val();

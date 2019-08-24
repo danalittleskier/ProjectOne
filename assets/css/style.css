@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
 }
 .flex{
     display: flex;
@@ -19,4 +20,8 @@
 
 label{
     margin-left: 0;
+}
+
+button{
+    border-radius: 24px !important;
 }
