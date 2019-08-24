@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    
 }
 .flex{
     display: flex;
@@ -25,3 +26,7 @@ label{
 button{
     border-radius: 24px !important;
 }
+
+/* body{
+    background-color: rgb(6, 26, 34);
+} */

@@ -37,7 +37,7 @@ $("#search").on("click", function (event) {
   if (hasLength === false) {
     $("#searchError").append("You must select a trail length.<br>");
   }
-  let duration = $("#duration").val();
+  let duration = $("#playlist-type").val();
   let hasDuration = duration !== undefined && duration !== null && duration !== "";
   if (hasDuration === false) {
     $("#searchError").append("You must select a trail duration.<br>");
@@ -71,10 +71,11 @@ $("#search").on("click", function (event) {
         key: "200562733-d1da5fe78fcd60535046cfa0d06ea12f",
         lat: geoLat,
         lon: geoLng,
-        maxDistance: "25",
+        maxDistance: "50",
       },
       method: "GET"
     }).then(function (response) {
+      console.log(response);
       //intensity dropdown
       let trails = response.trails.filter(function (trail) {
         if (trail.difficulty === $("#intensity").val()) {
@@ -102,6 +103,7 @@ $("#search").on("click", function (event) {
           return true;
         }
       });
+
       // Show table (and column names) if there are more than zero results
       //hides it if there are none that match
       if (trails.length > 0) {
@@ -185,7 +187,37 @@ $("#search").on("click", function (event) {
           </div>
         </li>
       `);
+
+      $(".container").append(`
+      <div class="carousel carousel-slider center">
+        <div class="carousel-fixed-item center">
+          <a class="btn waves-effect white grey-text darken-text-2">button</a>
+        </div>
+        <div class="carousel-item red white-text" href="#one!">
+          <h2>First Panel</h2>
+          <p class="white-text">This is your first panel</p>
+        </div>
+        <div class="carousel-item amber white-text" href="#two!">
+          <h2>Second Panel</h2>
+          <p class="white-text">This is your second panel</p>
+        </div>
+        <div class="carousel-item green white-text" href="#three!">
+          <h2>Third Panel</h2>
+          <p class="white-text">This is your third panel</p>
+        </div>
+        <div class="carousel-item blue white-text" href="#four!">
+          <h2>Fourth Panel</h2>
+          <p class="white-text">This is your fourth panel</p>
+        </div>
+    </div>
+    `);
+
+   
     })
+    $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: true
+    });
   });
 });
 });
