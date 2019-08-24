@@ -25,16 +25,37 @@ $("#music-list").on("click", function (event) {
             'Authorization': 'Bearer ' + accessCode
           },
           data : {
-            q: "Queen",
-            type: "artist",
-            genres: "rock",
+            q: "Mountain Zen",
+            type: "playlist",
             limit: 10
           },
           success: function(response){
               console.log(response);
-              let artists = response.artists.items;
+              let artists = response.playlists.items;
+              let trackDiv = $("<div align='right'><ul>");
 
               artists.forEach(function (artist) {
+                
+                $.ajax({
+                    url: "https://api.spotify.com/v1/playlists/"+artist.id+"/tracks",
+                    headers: {
+                      'Authorization': 'Bearer ' + accessCode
+                    },
+                    data : {
+                      limit: 10
+                    },
+                    success: function(response){ 
+                        console.log(response);
+                        let tracks = response.items;
+                        trackDiv.empty();
+                        tracks.forEach(function (element) {
+                            trackDiv.append(`<li> ${element.track.name} </li>`);
+                            console.log(element.track.name);
+                            console.log(trackDiv.text());
+                        });
+                    }
+                });
+
                 $("#resultsMusic").append(`
                 <li>
                   <div class="collapsible-header">
@@ -45,14 +66,17 @@ $("#music-list").on("click", function (event) {
                   <div class="collapsible-body flex">
                     <img src="${artist.images[artist.images.length-1].url}">
                     <p>${artist.id}</p>
-                    ${artist.genres[0]} | ${artist.genres[1]} 
+                    ${trackDiv.text()}
                     <a href="${artist.external_urls.spotify}"target="_blank">More Info</a>
                   </div>
+                  ${trackDiv.text()}
                 </li>
               `);
             })
         }
     });
+
+     
  }
 });
    
