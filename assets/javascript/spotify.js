@@ -101,8 +101,17 @@ $("#music-list").on("click", function (event) {
             Promise.all(emptyArr).then(function(){
               $('.carousel.carousel-slider').carousel({
                 fullWidth: true,
-                indicators: true
+                indicators: true,
+                dist: 0,
+                padding: 0,
+                duration: 150,
               });
+
+              autoplay()
+              function autoplay() {
+                $('.carousel').carousel('next');
+                setTimeout(autoplay, 10000);
+                }     
             })
         }
     });
