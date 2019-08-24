@@ -25,7 +25,7 @@ $("#music-list").on("click", function (event) {
             'Authorization': 'Bearer ' + accessCode
           },
           data : {
-            q: "Mountain Zen",
+            q: "Hiking",
             type: "playlist",
             limit: 10
           },
