@@ -78,11 +78,14 @@ $("#music-list").on("click", function (event) {
                       console.log($(".carousel").length);
                       console.log(playlist.images[playlist.images.length-1].url);
 
+                      $(".carousel").show();
+
                         $(".carousel").append(`
                         <div class="carousel-item red white-text" href="${playlist.external_urls.spotify}" target="_blank">
-                          <img src="${playlist.images[playlist.images.length-1].url}">
-                          <h2>${playlist.name}</h2>
-                          <p class="white-text"> ${"Foobar"+trackDiv.text()}</p>
+                        <h2>${playlist.name}</h2>
+                          <img id="playlist-image"src="${playlist.images[0].url}">
+                          <h5> Top Ten Tracks </h5>
+                          <p class="white-text"> ${trackDiv.text()}</p>
                         </div>
                         `);
                   }

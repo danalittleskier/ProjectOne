@@ -16,6 +16,10 @@ var difficultyMap = {
 //hides the table until the user clicks on it
 $("#resultsCollapsible").hide();
 
+//hides the carousel until the user clicks on it
+$(".carousel").hide();
+
+
 // on click listener for the serach button
 $("#search").on("click", function (event) {
 

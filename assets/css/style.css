@@ -30,3 +30,13 @@ button{
 /* body{
     background-color: rgb(6, 26, 34);
 } */
+
+
+.carousel{
+    height: 700px !important;
+}
+
+#playlist-image{
+    width: 500px !important;
+    height: 500px !important;
+}
