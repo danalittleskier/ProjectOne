@@ -31,13 +31,13 @@ $("#music-list").on("click", function (event) {
           },
           success: function(response){
               console.log(response);
-              let artists = response.playlists.items;
-              let trackDiv = $("<div align='right'><ul>");
+              let playlists = response.playlists.items;
+              var trackDiv = $("<div>");
 
-              artists.forEach(function (artist) {
+              playlists.forEach(function (playlist) {
                 
                 $.ajax({
-                    url: "https://api.spotify.com/v1/playlists/"+artist.id+"/tracks",
+                    url: "https://api.spotify.com/v1/playlists/"+playlist.id+"/tracks",
                     headers: {
                       'Authorization': 'Bearer ' + accessCode
                     },
@@ -45,33 +45,38 @@ $("#music-list").on("click", function (event) {
                       limit: 10
                     },
                     success: function(response){ 
-                        console.log(response);
+                        //console.log(response);
                         let tracks = response.items;
                         trackDiv.empty();
                         tracks.forEach(function (element) {
-                            trackDiv.append(`<li> ${element.track.name} </li>`);
-                            console.log(element.track.name);
-                            console.log(trackDiv.text());
+                            trackDiv.append("<li> "+element.track.name+"</li>");
                         });
+                        console.log("My 1st track div " +trackDiv.text());
+
+                        $("#resultsMusic").append(`
+                        <li>
+                          <div class="collapsible-header">
+                            <span style="font-weight: bold;">
+                                ${playlist.name}
+                            </span> 
+                          </div>
+                          <div class="collapsible-body flex">
+                            <img src="${playlist.images[playlist.images.length-1].url}">
+                            <p>${playlist.id}</p>
+                            ${"Foobar "+trackDiv.text()}
+                            <a href="${playlist.external_urls.spotify}"target="_blank">More Info</a>
+                       
+                          </div>
+                          
+                        </li>
+                      `);
                     }
                 });
+                //console.log("My track div " +trackDiv.text());
 
-                $("#resultsMusic").append(`
-                <li>
-                  <div class="collapsible-header">
-                    <span style="font-weight: bold;">
-                        ${artist.name}
-                    </span> 
-                  </div>
-                  <div class="collapsible-body flex">
-                    <img src="${artist.images[artist.images.length-1].url}">
-                    <p>${artist.id}</p>
-                    ${trackDiv.text()}
-                    <a href="${artist.external_urls.spotify}"target="_blank">More Info</a>
-                  </div>
-                  ${trackDiv.text()}
-                </li>
-              `);
+                    // var tracksDivObject = trackDiv.text();
+
+             
             })
         }
     });
