@@ -1,7 +1,32 @@
 *{
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    
 }
 .flex{
     display: flex;
     
 }
+
+#spacer{
+    padding-top: 16px;
+}
+
+.title{
+    height: 200px;
+    margin-top: 0;
+    text-align: center;
+    padding-top: 80px;
+}
+
+label{
+    margin-left: 0;
+}
+
+button{
+    border-radius: 24px !important;
+}
+
+/* body{
+    background-color: rgb(6, 26, 34);
+} */

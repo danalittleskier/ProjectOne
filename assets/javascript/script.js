@@ -14,7 +14,7 @@ var difficultyMap = {
   black: "difficult",
 }
 //hides the table until the user clicks on it
-$("resultsCollapsible").hide();
+$("#resultsCollapsible").hide();
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
@@ -24,7 +24,7 @@ $("#search").on("click", function (event) {
   let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
-    $("#searchError").append("You must provide a city to search.<br>");
+    // $("#searchError").append("You must provide a city to search.<br>");
     M.toast({html: 'You must provide a city to search'});
   }
   let intensity = $("#intensity").val();
@@ -37,7 +37,7 @@ $("#search").on("click", function (event) {
   if (hasLength === false) {
     $("#searchError").append("You must select a trail length.<br>");
   }
-  let duration = $("#duration").val();
+  let duration = $("#playlist-type").val();
   let hasDuration = duration !== undefined && duration !== null && duration !== "";
   if (hasDuration === false) {
     $("#searchError").append("You must select a trail duration.<br>");
@@ -71,10 +71,11 @@ $("#search").on("click", function (event) {
         key: "200562733-d1da5fe78fcd60535046cfa0d06ea12f",
         lat: geoLat,
         lon: geoLng,
-        maxDistance: "25",
+        maxDistance: "50",
       },
       method: "GET"
     }).then(function (response) {
+      console.log(response);
       //intensity dropdown
       let trails = response.trails.filter(function (trail) {
         if (trail.difficulty === $("#intensity").val()) {
@@ -102,6 +103,7 @@ $("#search").on("click", function (event) {
           return true;
         }
       });
+
       // Show table (and column names) if there are more than zero results
       //hides it if there are none that match
       if (trails.length > 0) {
@@ -109,8 +111,8 @@ $("#search").on("click", function (event) {
         $("#resultsCollapsible").empty();
       } else {
         $("resultsCollapsible").hide();
-        $("#searchError").append("No Results Found <br>");
-        // $("#searchError").append("<img src= 'assets/images/test.svg'>");
+        // $("#searchError").append("<h5> 'Looks like you're a little off the trail, we couldn't find anything to match your search. Try adjusting the difficulty or increasing the distance' </h5>");
+        $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
       }
 
       //add column headers to table dynamically
@@ -185,7 +187,24 @@ $("#search").on("click", function (event) {
           </div>
         </li>
       `);
+
+      $(".carousel").append(`
+
+        <div class="carousel-fixed-item center">
+          <a class="btn waves-effect white grey-text darken-text-2">button</a>
+        </div>
+        <div class="carousel-item red white-text" href="#one!">
+          <h2>First Panel</h2>
+          <p class="white-text">This is your first panel</p>
+        </div>
+    `);
+
+   
     })
+    $('.carousel.carousel-slider').carousel({
+      fullWidth: true,
+      indicators: true
+    });
   });
 });
 });

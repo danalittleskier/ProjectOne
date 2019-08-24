@@ -8,7 +8,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <!-- link to stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- google -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900&display=swap" rel="stylesheet">
 
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -66,11 +69,11 @@
         <label>Length</label>
       </div>
       <div class="input-field col s6 m4">
-        <select id="duration">
-          <option value="" disabled selected>Choose the duration</option>
-          <option selected="selected" value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select id="playlist-type">
+          <option value="" disabled selected>Choose the playlist type</option>
+          <option selected="selected" value="1">Hiking</option>
+          <option value="2">Running</option>
+          <option value="3">Walking</option>
         </select>
         <label>Duration</label>
       </div>
@@ -81,9 +84,13 @@
           <!-- <i class="material-icons right">send</i> -->
         </button>
         <div id="searchError">
+        </div>
       </div>
-      </div>
+      
     </div>
+
+
+
     <div class="row">
             <div class="col s12">
               <button id="music-list" class="btn waves-effect waves-light" type="button" name="action">Music List
@@ -91,6 +98,7 @@
               </button>
             </div>
           </div>
+          
     <div class="row">
       <div class="col s12">
         <ul id="resultsCollapsible" class="collapsible">
@@ -101,17 +109,14 @@
     </div>
 
   </div>
+
  <!--Spotify results-->
   <div class="container">
 
-        <div class="row">
-                <div class="col s12">
-                  <ul id="resultsMusic" class="collapsible">
-                  </ul>
-                  <!-- <table id="resultsTable">
-                  </table> -->
-                </div>
-              </div>
+    <div class="carousel carousel-slider center">
+        <div class="carousel-fixed-item center">
+            <a class="btn waves-effect white grey-text darken-text-2">button</a>
+          </div>
     </div>
 
 
