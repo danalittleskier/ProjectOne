@@ -25,34 +25,63 @@ $("#music-list").on("click", function (event) {
             'Authorization': 'Bearer ' + accessCode
           },
           data : {
-            q: "Queen",
-            type: "artist",
-            genres: "rock",
+            q: "Hiking",
+            type: "playlist",
             limit: 10
           },
           success: function(response){
               console.log(response);
-              let artists = response.artists.items;
+              let playlists = response.playlists.items;
+              var trackDiv = $("<div>");
 
-              artists.forEach(function (artist) {
-                $("#resultsMusic").append(`
-                <li>
-                  <div class="collapsible-header">
-                    <span style="font-weight: bold;">
-                        ${artist.name}
-                    </span> 
-                  </div>
-                  <div class="collapsible-body flex">
-                    <img src="${artist.images[artist.images.length-1].url}">
-                    <p>${artist.id}</p>
-                    ${artist.genres[0]} | ${artist.genres[1]} 
-                    <a href="${artist.external_urls.spotify}"target="_blank">More Info</a>
-                  </div>
-                </li>
-              `);
+              playlists.forEach(function (playlist) {
+                
+                $.ajax({
+                    url: "https://api.spotify.com/v1/playlists/"+playlist.id+"/tracks",
+                    headers: {
+                      'Authorization': 'Bearer ' + accessCode
+                    },
+                    data : {
+                      limit: 10
+                    },
+                    success: function(response){ 
+                        //console.log(response);
+                        let tracks = response.items;
+                        trackDiv.empty();
+                        tracks.forEach(function (element) {
+                            trackDiv.append("<li> "+element.track.name+"</li>");
+                        });
+                        console.log("My 1st track div " +trackDiv.text());
+
+                        $("#resultsMusic").append(`
+                        <li>
+                          <div class="collapsible-header">
+                            <span style="font-weight: bold;">
+                                ${playlist.name}
+                            </span> 
+                          </div>
+                          <div class="collapsible-body flex">
+                            <img src="${playlist.images[playlist.images.length-1].url}">
+                            <p>${playlist.id}</p>
+                            ${"Foobar "+trackDiv.text()}
+                            <a href="${playlist.external_urls.spotify}"target="_blank">More Info</a>
+                       
+                          </div>
+                          
+                        </li>
+                      `);
+                    }
+                });
+                //console.log("My track div " +trackDiv.text());
+
+                    // var tracksDivObject = trackDiv.text();
+
+             
             })
         }
     });
+
+     
  }
 });
    
