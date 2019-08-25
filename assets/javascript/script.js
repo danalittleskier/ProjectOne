@@ -38,25 +38,37 @@ $(".carousel").hide();
 // on click listener for the serach button
 $("#search").on("click", function (event) {
 
+  let city = $("#city").val();
+  let intensity = $("#intensity").val();
+  let length = $("#length").val();
+  let duration = $("#playlist-type").val();
+
+  // Store all content into localStorage
+  localStorage.setItem("city", city);
+  localStorage.setItem("intensity", intensity);
+  localStorage.setItem("length", length);
+  localStorage.setItem("duration", duration);
+
+  
   // This tells them they need to pick parameters, if they are missing any
   $("#searchError").empty();
-  let city = $("#city").val();
+  //let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
     // $("#searchError").append("You must provide a city to search.<br>");
     M.toast({html: 'You must provide a city to search'});
   }
-  let intensity = $("#intensity").val();
+  //let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
   if (hasIntensity === false) {
     $("#searchError").append("You must select a trail intensity.<br>");
   }
-  let length = $("#length").val();
+  //let length = $("#length").val();
   let hasLength = length !== undefined && length !== null && length !== "";
   if (hasLength === false) {
     $("#searchError").append("You must select a trail length.<br>");
   }
-  let duration = $("#playlist-type").val();
+  //let duration = $("#playlist-type").val();
   let hasDuration = duration !== undefined && duration !== null && duration !== "";
   if (hasDuration === false) {
     $("#searchError").append("You must select a trail duration.<br>");
@@ -65,11 +77,22 @@ $("#search").on("click", function (event) {
   if (valid === false) {
     return;
   }
+  rerouteToSpotify();
+});
 
+function rerouteToSpotify(){
+  window.location.href = spotifyURL;
+}
 
+function callAPIs(){
+
+  var dropdownCity = localStorage.getItem('city');
+    var dropdownIntensity = localStorage.getItem('intensity');
+    var dropdownLength = localStorage.getItem('length');
+    
   //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-  var geocodeAddress = $("#city").val();
+  var geocodeAddress = dropdownCity;
   var geocodeKey = "&key=AIzaSyBA9Yt7UsjtvyCblUWBK0z6qb42GT8M8ok";
   var geocodeRequest = geocodeURL + geocodeAddress + geocodeKey;
   $.ajax({
@@ -97,14 +120,15 @@ $("#search").on("click", function (event) {
       console.log(response);
       //intensity dropdown
       let trails = response.trails.filter(function (trail) {
-        if (trail.difficulty === $("#intensity").val()) {
+        if (trail.difficulty === dropdownIntensity) {
+          console.log("Trail difficulty "+trail.difficulty+ " dropdown intensity "+dropdownIntensity);
           return true;
         }
       })
       //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles). 
       //Instead of a if/else statment, I did a switch statement with the minimum and maximum miles
       let minLength, maxLength;
-      switch ($("#length").val()) {
+      switch (dropdownLength) {
         case "1":
           minLength = 0;
           maxLength = 5;
@@ -217,7 +241,7 @@ $("#search").on("click", function (event) {
     // });
   });
 });
-});
+} //function callAPIs
 
 
 
