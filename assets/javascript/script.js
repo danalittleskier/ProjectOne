@@ -228,7 +228,9 @@ $("#search").on("click", function (event) {
 });
 
 
-
+//identical code to the load trails code. 
+//currently needed to load local storage. 
+//but could also be called from script.js trail search results to DRY the code..
 function loadTrailSearchResults(trails) {
   if (trails.length > 0) {
     $("#resultsCollapsible").show();
