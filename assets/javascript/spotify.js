@@ -32,8 +32,9 @@ $("#music-list").on("click", function (event) {
           success: function(response){
               console.log(response);
               let playlists = response.playlists.items;
-              var trackDiv = $("<div>");
+              let trackDiv = $("<div>");
 
+              let trackNum = 0;
               let emptyArr = [];
               console.log(emptyArr);
 
@@ -45,16 +46,22 @@ $("#music-list").on("click", function (event) {
                       'Authorization': 'Bearer ' + accessCode
                     },
                     data : {
-                      limit: 10
+                      limit: 20
                     },
                     success: function(response){ 
                         //console.log(response);
                         let tracks = response.items;
                         trackDiv.empty();
-                        tracks.forEach(function (element) {
-                            trackDiv.append("<li> "+element.track.name+"</li>");
 
+
+                        tracks.forEach(function (element) {
+                        console.log(trackNum);
+                        trackDiv.append("<li> " + ' / ' + '  '  + element.track.name +  ' ' + "</li>");
+                       
                         });
+                       
+            
+                       
                         // console.log("My 1st track div " +trackDiv.text());
 
                       //   $(".container").append(`
@@ -75,14 +82,21 @@ $("#music-list").on("click", function (event) {
                       //   </li>
                       // `);
 
-                      console.log($(".carousel").length);
-                      console.log(playlist.images[playlist.images.length-1].url);
+                      // console.log($(".carousel").length);
+                      // console.log(playlist.images[playlist.images.length-1].url);
 
+                      $(".carousel").show();
                         $(".carousel").append(`
-                        <div class="carousel-item red white-text" href="${playlist.external_urls.spotify}" target="_blank">
-                          <img src="${playlist.images[playlist.images.length-1].url}">
-                          <h2>${playlist.name}</h2>
-                          <p class="white-text"> ${"Foobar"+trackDiv.text()}</p>
+                        <div id = 'car-height'class="carousel-item grey lighten-3 grey-text">
+                        <h2 id='playlist-name-title'>${playlist.name}</h2>
+                        <div id = 'car-container'>
+                          <img id="playlist-image"src="${playlist.images[0].url}">
+                          <div>
+                          <h6 id= 'playlist-info'> Playlist Preview </h6>
+                          <p id='tracks' class="grey-text"> ${trackDiv.text()}</p>
+                          <a class="btn waves-effect waves-light grey darken-1 spotify-link" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
+                          </div>
+                          </div>
                         </div>
                         `);
                   }
@@ -98,8 +112,17 @@ $("#music-list").on("click", function (event) {
             Promise.all(emptyArr).then(function(){
               $('.carousel.carousel-slider').carousel({
                 fullWidth: true,
-                indicators: true
+                indicators: true,
+                dist: 0,
+                padding: 0,
+                duration: 150,
               });
+
+              autoplay()
+              function autoplay() {
+                $('.carousel').carousel('next');
+                setTimeout(autoplay, 8000);
+                }     
             })
         }
     });
