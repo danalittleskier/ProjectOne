@@ -114,15 +114,15 @@ $("#music-list").on("click", function (event) {
                 fullWidth: true,
                 indicators: true,
                 dist: 0,
-                // padding: 0,
-                // duration: 150,
+                padding: 0,
+                duration: 150,
               });
 
-              // autoplay()
-              // function autoplay() {
-              //   $('.carousel').carousel('next');
-              //   setTimeout(autoplay, 8000);
-              //   }     
+              autoplay()
+              function autoplay() {
+                $('.carousel').carousel('next');
+                setTimeout(autoplay, 8000);
+                }     
             })
         }
     });

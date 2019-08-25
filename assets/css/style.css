@@ -3,52 +3,41 @@
     font-family: 'Roboto', sans-serif;
     
 }
+
+html { 
+    background-image: url(images/Topo2.svg); 
+    background-size: cover;
+    background-size: cover;
+    background-size: cover;
+    background-size: cover;
+}
+
+.backgroud{
+   height: 100%;
+}
+
 .flex{
     display: flex;
     
 }
 
+
+
 #spacer{
     padding-top: 16px;
 }
 
-.header{
+.title{
     height: 200px;
     margin-top: 0;
-    text-align: center;
-    padding-top: 40px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    overflow: hidden;
-    -webkit-transition: height 0.3s;
-    -moz-transition: height 0.3s;
-    transition: height 0.3s;
-    text-align:center;
-    line-height:160px;
-    background-color: blue;
-
-}
-.header h1
-{
-    font-size:30px;
-    height: 200px;
-    font-weight:normal;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+    text-align: left;
+    padding-top: 32px;
+    padding-left: 64px;
+    font-size: 24px;
+    color:black;
 }
 
-.header.shrink h1
-{
-    font-size:24px;
-    height: 160px;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-}
+
 label{
     margin-left: 0;
 }
@@ -57,9 +46,9 @@ button{
     border-radius: 24px !important;
 }
 
-body{
-    background-color: rgb(6, 26, 34);
-}
+/* body{
+  
+} */
 
 
 .carousel{
@@ -109,7 +98,14 @@ h6{
    top:70%;
 }
 
-.container{
-    position: relative;
-    top: 200px;
+ul.dropdown-content.select-dropdown li span {
+    color: black; /* no need for !important :) */
+}
+
+.select-dropdown li span {
+    color: rgb(6, 26, 34); /* no need for !important :) */
+}
+
+.select-dropdown{
+    color: black;
 }
