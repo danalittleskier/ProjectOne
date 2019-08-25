@@ -1,3 +1,4 @@
+var dropdownPlaylist = localStorage.getItem('duration');
 var accessCode;
 var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
 
@@ -6,11 +7,11 @@ var ourProjectURL = (typeof localURL !== "undefined") ? localURL : "https://dana
 var encodedProjectURL = encodeURIComponent(ourProjectURL);
 var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID + "&response_type=token&redirect_uri=" + encodedProjectURL + "&scope=user-read-private%20user-read-email"; // &state=34fFs29kd09"
 
-$("#music-list").on("click", function (event) {
+// $("#music-list").on("click", function (event) {
 
-    window.location.href = spotifyURL;
+//     window.location.href = spotifyURL;
   
-  });
+//   });
   
   $(document).ready(function () {
     //Changed to grabing hash
@@ -18,6 +19,8 @@ $("#music-list").on("click", function (event) {
     accessCode = urlParams.get('access_token');
   
     if (accessCode) {
+        //call all APIs when we have an access-token back from spotify
+        callAPIs();
 
       $.ajax({
           url: "https://api.spotify.com/v1/search",
@@ -25,7 +28,7 @@ $("#music-list").on("click", function (event) {
             'Authorization': 'Bearer ' + accessCode
           },
           data : {
-            q: "Hiking",
+            q: dropdownPlaylist,
             type: "playlist",
             limit: 10
           },
@@ -36,7 +39,7 @@ $("#music-list").on("click", function (event) {
 
               let trackNum = 0;
               let emptyArr = [];
-              console.log(emptyArr);
+              //console.log(emptyArr);
 
               playlists.forEach(function (playlist) {
                 
