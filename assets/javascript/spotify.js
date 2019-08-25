@@ -19,6 +19,7 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
     accessCode = urlParams.get('access_token');
   
     if (accessCode) {
+        //call all APIs when we have an access-token back from spotify
         callAPIs();
 
       $.ajax({

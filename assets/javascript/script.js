@@ -83,7 +83,7 @@ $("#search").on("click", function (event) {
 function rerouteToSpotify(){
   window.location.href = spotifyURL;
 }
-
+//only call the geocode and trails API when ready
 function callAPIs(){
 
   var dropdownCity = localStorage.getItem('city');
