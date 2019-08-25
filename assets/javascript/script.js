@@ -13,8 +13,33 @@ var difficultyMap = {
   blueBlack: "moderate to difficult",
   black: "difficult",
 }
+
 //hides the table until the user clicks on it
 $("#resultsCollapsible").hide();
+
+//check to see if reload is a return from Spotify
+//if so, load timestamp results from local storage
+var spotRedir = localStorage.traTunSpotRedir ? localStorage.getItem("traTunSpotRedir") : false
+
+//Check return from Spotify timestamp to see if localstorage is stale (older that 15 min).
+//If not stale, process list the same as normal search results. Functon loadTrailSeachResults created for this.
+//After processed, delete localstorage. If stale, delete local storage.
+if(spotRedir){
+  let curTimeSt = getTime();
+  spotRedir = parseInt(spotRedir)
+  if(((curTimeSt - spotRedir)/1000)/60 > 15){
+    clearLocStor();
+  }
+  else {
+    loadTrailSearchResults(JSON.parse(localStorage.getItem("traTunTrailFilt")));
+    clearLocStor();
+  }
+}
+
+function clearLocStor(){
+  localStorage.removeItem("traTunSpRedir");
+  localStorage.removeItem("traTunTrailFilt");
+}
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
@@ -25,7 +50,7 @@ $("#search").on("click", function (event) {
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
     // $("#searchError").append("You must provide a city to search.<br>");
-    M.toast({html: 'You must provide a city to search'});
+    M.toast({ html: 'You must provide a city to search' });
   }
   let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
@@ -46,8 +71,6 @@ $("#search").on("click", function (event) {
   if (valid === false) {
     return;
   }
-
-
   //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
   var geocodeAddress = $("#city").val();
@@ -75,6 +98,7 @@ $("#search").on("click", function (event) {
       },
       method: "GET"
     }).then(function (response) {
+      console.log("getTrailsAPI Response")
       console.log(response);
       //intensity dropdown
       let trails = response.trails.filter(function (trail) {
@@ -82,6 +106,7 @@ $("#search").on("click", function (event) {
           return true;
         }
       })
+
       //length dropdown. This calls to the API, and gets the trails that fit into the parameters I created(the different miles). 
       //Instead of a if/else statment, I did a switch statement with the minimum and maximum miles
       let minLength, maxLength;
@@ -103,10 +128,10 @@ $("#search").on("click", function (event) {
           return true;
         }
       });
-
       // Show table (and column names) if there are more than zero results
       //hides it if there are none that match
       if (trails.length > 0) {
+        localStorage.setItem("traTunTrailFilt", JSON.stringify(trails));
         $("#resultsCollapsible").show();
         $("#resultsCollapsible").empty();
       } else {
@@ -188,19 +213,45 @@ $("#search").on("click", function (event) {
         </li>
       `);
 
-    
 
-   
-    })
-    // $('.carousel.carousel-slider').carousel({
-    //   fullWidth: true,
-    //   indicators: true
-    // });
+
+
+      })
+      // $('.carousel.carousel-slider').carousel({
+      //   fullWidth: true,
+      //   indicators: true
+      // });
+    });
   });
 });
-});
 
 
 
-
+function loadTrailSearchResults(trails) {
+  if (trails.length > 0) {
+    $("#resultsCollapsible").show();
+    $("#resultsCollapsible").empty();
+  } else {
+    $("resultsCollapsible").hide();
+    // $("#searchError").append("<h5> 'Looks like you're a little off the trail, we couldn't find anything to match your search. Try adjusting the difficulty or increasing the distance' </h5>");
+    $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
+  }
+  trails.forEach(function (trail) {
+    $("#resultsCollapsible").append(`
+        <li>
+          <div class="collapsible-header">
+            <span style="font-weight: bold;">
+                ${trail.name}
+            </span> 
+          </div>
+          <div class="collapsible-body flex">
+            <img src="${trail.imgSmall}">
+            <p>${trail.summary}</p>
+            ${difficultyMap[trail.difficulty]} | ${trail.length} mi
+            <a href="${trail.url}"target="_blank">More Info</a>
+          </div>
+        </li>
+      `);
+  });
+}
 
