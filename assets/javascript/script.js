@@ -17,29 +17,31 @@ var difficultyMap = {
 //hides the table until the user clicks on it
 $("#resultsCollapsible").hide();
 
-//check to see if reload is a return from Spotify
-//if so, load timestamp results from local storage
-var spotRedir = localStorage.traTunSpotRedir ? localStorage.getItem("traTunSpotRedir") : false
-
 //Check return from Spotify timestamp to see if localstorage is stale (older that 15 min).
 //If not stale, process list the same as normal search results. Functon loadTrailSeachResults created for this.
 //After processed, delete localstorage. If stale, delete local storage.
-if(spotRedir){
-  let curTimeSt = getTime();
-  spotRedir = parseInt(spotRedir)
-  if(((curTimeSt - spotRedir)/1000)/60 > 15){
-    clearLocStor();
-  }
-  else {
-    loadTrailSearchResults(JSON.parse(localStorage.getItem("traTunTrailFilt")));
-    clearLocStor();
-  }
-}
+// var spotRedir = localStorage.getItem("traTunSpotRedir");
+// var trailResults = JSON.parse(localStorage.getItem("traTunTrailFilt"));
+// if(spotRedir){
+//   let curTimeSt = getTime();
+//   spotRedir = parseInt(spotRedir)
+//   if(((curTimeSt - spotRedir)/1000)/60 > 15){
+//     clearLocStor();
+//   }
+//   else if (trailResults){
+//     loadTrailSearchResults(trailResults);
+//     clearLocStor();
+//   }
+//   else{
+//     clearLocStor();
+//   }
+    
+// }
 
-function clearLocStor(){
-  localStorage.removeItem("traTunSpRedir");
-  localStorage.removeItem("traTunTrailFilt");
-}
+// function clearLocStor(){
+//   localStorage.removeItem("traTunSpRedir");
+//   localStorage.removeItem("traTunTrailFilt");
+// }
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {
@@ -231,7 +233,8 @@ function loadTrailSearchResults(trails) {
   if (trails.length > 0) {
     $("#resultsCollapsible").show();
     $("#resultsCollapsible").empty();
-  } else {
+  } 
+  else {
     $("resultsCollapsible").hide();
     // $("#searchError").append("<h5> 'Looks like you're a little off the trail, we couldn't find anything to match your search. Try adjusting the difficulty or increasing the distance' </h5>");
     $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
