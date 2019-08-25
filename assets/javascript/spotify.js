@@ -87,7 +87,7 @@ $("#music-list").on("click", function (event) {
 
                       $(".carousel").show();
                         $(".carousel").append(`
-                        <div id = 'car-height'class="carousel-item blue-grey darken-4 white-text">
+                        <div id = 'car-height'class="carousel-item blue-grey darken-3 white-text">
                         <h2 id='playlist-name-title'>${playlist.name}</h2>
                         <div id = 'car-container'>
                           <img id="playlist-image"src="${playlist.images[0].url}">
