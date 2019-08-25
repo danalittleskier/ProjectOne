@@ -87,14 +87,14 @@ $("#music-list").on("click", function (event) {
 
                       $(".carousel").show();
                         $(".carousel").append(`
-                        <div id = 'car-height'class="carousel-item blue-grey darken-3 white-text">
+                        <div id = 'car-height'class="carousel-item grey lighten-3 grey-text">
                         <h2 id='playlist-name-title'>${playlist.name}</h2>
                         <div id = 'car-container'>
                           <img id="playlist-image"src="${playlist.images[0].url}">
                           <div>
                           <h6 id= 'playlist-info'> Playlist Preview </h6>
-                          <p id='tracks' class="white-text"> ${trackDiv.text()}</p>
-                          <a class="btn waves-effect white grey-text darken-text-2" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
+                          <p id='tracks' class="grey-text"> ${trackDiv.text()}</p>
+                          <a class="btn waves-effect waves-light grey darken-1 spotify-link" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
                           </div>
                           </div>
                         </div>

@@ -28,13 +28,15 @@ html {
 }
 
 .title{
-    height: 200px;
+    height: 100px;
     margin-top: 0;
     text-align: left;
     padding-top: 32px;
     padding-left: 64px;
     font-size: 24px;
     color:black;
+    /* opacity: 0.4; */
+    background-color:rgba(255, 255, 255, 0.39);
 }
 
 
@@ -60,13 +62,13 @@ button{
     width: 400px !important;
     /* height: 300px !important; */
     padding-left: 48px;
-    padding-right: 32px;
+    padding-right: 64px;
 }
 
 #playlist-name-title{
     text-align: left;
     padding-left: 48px;
-    padding-top: 16px;
+    padding-top: 32px;
 }
 
 #car-container{
@@ -80,10 +82,13 @@ h6{
 
 #playlist-info{
     text-align: left;
+    margin-top: 0;
+    padding-bottom: 24px;
 }
 
 #tracks{
     text-align: left;
+    padding-bottom: 24px;
 }
 
 #car-height{
@@ -91,6 +96,8 @@ h6{
     width: 100%;
     margin: 0;
     overflow: visible;
+    padding-left: 64px;
+    padding-right: 100px;
 }
 
 .indicators{
@@ -109,4 +116,22 @@ ul.dropdown-content.select-dropdown li span {
 
 .select-dropdown{
     color: black;
+}
+
+.collapsible-body {
+    background-color: #fafafa !important;
+    margin:0 !important;
+}
+
+.collapsible-header{
+    background-color: #fafafa !important;
+}
+
+a{
+    border-radius: 24px !important;
+    margin-left: 0;
+}
+
+.container{
+    margin-left: 70px;
 }

@@ -193,16 +193,16 @@ $("#search").on("click", function (event) {
         // );
         $("#resultsCollapsible").append(`
         <li>
-          <div class="collapsible-header">
+          <div class="collapsible-header grey lighten-3">
             <span style="font-weight: bold;">
                 ${trail.name}
             </span> 
           </div>
-          <div class="collapsible-body flex">
+          <div class="collapsible-body grey lighten-3 flex">
             <img src="${trail.imgSmall}">
             <p>${trail.summary}</p>
             ${difficultyMap[trail.difficulty]} | ${trail.length} mi
-            <a href="${trail.url}"target="_blank">More Info</a>
+            <a class="btn waves-effect waves-light grey darken-1 spotify-link" href="${trail.url}"target="_blank">More Info</a>
           </div>
         </li>
       `);
