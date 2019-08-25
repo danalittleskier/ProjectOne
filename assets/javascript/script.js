@@ -17,33 +17,8 @@ var difficultyMap = {
 //hides the table until the user clicks on it
 $("#resultsCollapsible").hide();
 
-//Check return from Spotify timestamp to see if localstorage is stale (older that 15 min).
-//If not stale, process list the same as normal search results. Functon loadTrailSeachResults created for this.
-//After processed, delete localstorage. If stale, delete local storage.
-// var spotRedir = localStorage.getItem("traTunSpotRedir");
-// var trailResults = JSON.parse(localStorage.getItem("traTunTrailFilt"));
-// if(spotRedir){
-//   let curTimeSt = getTime();
-//   spotRedir = parseInt(spotRedir)
-//   if(((curTimeSt - spotRedir)/1000)/60 > 15){
-//     clearLocStor();
-//   }
-//   else if (trailResults){
-//     loadTrailSearchResults(trailResults);
-//     clearLocStor();
-//   }
-//   else{
-//     clearLocStor();
-//   }
-    
-// }
 
-// function clearLocStor(){
-//   localStorage.removeItem("traTunSpRedir");
-//   localStorage.removeItem("traTunTrailFilt");
-// }
-
-// on click listener for the serach button
+// on click listener for the search button
 $("#search").on("click", function (event) {
 
   // This tells them they need to pick parameters, if they are missing any
