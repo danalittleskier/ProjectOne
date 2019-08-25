@@ -12,13 +12,43 @@
     padding-top: 16px;
 }
 
-.title{
+.header{
     height: 200px;
     margin-top: 0;
     text-align: center;
-    padding-top: 80px;
+    padding-top: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    overflow: hidden;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
+    text-align:center;
+    line-height:160px;
+    background-color: blue;
+
+}
+.header h1
+{
+    font-size:30px;
+    height: 200px;
+    font-weight:normal;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
+.header.shrink h1
+{
+    font-size:24px;
+    height: 160px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
 label{
     margin-left: 0;
 }
@@ -27,9 +57,9 @@ button{
     border-radius: 24px !important;
 }
 
-/* body{
+body{
     background-color: rgb(6, 26, 34);
-} */
+}
 
 
 .carousel{
@@ -37,6 +67,49 @@ button{
 }
 
 #playlist-image{
-    width: 500px !important;
-    height: 500px !important;
+    width: 400px !important;
+    /* height: 300px !important; */
+    padding-left: 48px;
+    padding-right: 32px;
+}
+
+#playlist-name-title{
+    text-align: left;
+    padding-left: 48px;
+    padding-top: 16px;
+}
+
+#car-container{
+    display:flex;
+   
+}
+
+h6{
+    width: 100%;
+}
+
+#playlist-info{
+    text-align: left;
+}
+
+#tracks{
+    text-align: left;
+}
+
+#car-height{
+    height: 575px;
+    width: 100%;
+    margin: 0;
+    overflow: visible;
+}
+
+.indicators{
+   padding: 0;
+   position:absolute;
+   top:70%;
+}
+
+.container{
+    position: relative;
+    top: 200px;
 }

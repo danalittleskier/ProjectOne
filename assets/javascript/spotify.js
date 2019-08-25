@@ -46,7 +46,7 @@ $("#music-list").on("click", function (event) {
                       'Authorization': 'Bearer ' + accessCode
                     },
                     data : {
-                      limit: 10
+                      limit: 20
                     },
                     success: function(response){ 
                         //console.log(response);
@@ -82,18 +82,21 @@ $("#music-list").on("click", function (event) {
                       //   </li>
                       // `);
 
-                      console.log($(".carousel").length);
-                      console.log(playlist.images[playlist.images.length-1].url);
+                      // console.log($(".carousel").length);
+                      // console.log(playlist.images[playlist.images.length-1].url);
 
                       $(".carousel").show();
-
                         $(".carousel").append(`
-                        <div class="carousel-item blue-grey darken-4 white-text" href="${playlist.external_urls.spotify}" target="_blank">
-                        <h2>${playlist.name}</h2>
-                        <a class="btn waves-effect white grey-text darken-text-2" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
+                        <div id = 'car-height'class="carousel-item blue-grey darken-4 white-text">
+                        <h2 id='playlist-name-title'>${playlist.name}</h2>
+                        <div id = 'car-container'>
                           <img id="playlist-image"src="${playlist.images[0].url}">
-                          <h5> Top Ten Tracks </h5>
-                          <p class="white-text"> ${trackDiv.text()}</p>
+                          <div>
+                          <h6 id= 'playlist-info'> Playlist Preview </h6>
+                          <p id='tracks' class="white-text"> ${trackDiv.text()}</p>
+                          <a class="btn waves-effect white grey-text darken-text-2" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
+                          </div>
+                          </div>
                         </div>
                         `);
                   }
@@ -111,15 +114,15 @@ $("#music-list").on("click", function (event) {
                 fullWidth: true,
                 indicators: true,
                 dist: 0,
-                padding: 0,
-                duration: 150,
+                // padding: 0,
+                // duration: 150,
               });
 
-              autoplay()
-              function autoplay() {
-                $('.carousel').carousel('next');
-                setTimeout(autoplay, 8000);
-                }     
+              // autoplay()
+              // function autoplay() {
+              //   $('.carousel').carousel('next');
+              //   setTimeout(autoplay, 8000);
+              //   }     
             })
         }
     });

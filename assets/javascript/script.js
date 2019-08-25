@@ -4,6 +4,21 @@
 //     var elems = document.querySelectorAll('.dropdown-trigger');
 //     var instances = M.Dropdown.init(elems, {});
 //   });
+$(function(){
+  var shrinkHeader = 300;
+   $(window).scroll(function() {
+     var scroll = getCurrentScroll();
+       if ( scroll >= shrinkHeader ) {
+            $('.title').addClass('shrink');
+         }
+         else {
+             $('.title').removeClass('shrink');
+         }
+   });
+ function getCurrentScroll() {
+     return window.pageYOffset || document.documentElement.scrollTop;
+     }
+ });
 
 //global variables for color difficulties
 var difficultyMap = {
