@@ -32,8 +32,9 @@ $("#music-list").on("click", function (event) {
           success: function(response){
               console.log(response);
               let playlists = response.playlists.items;
-              var trackDiv = $("<div>");
+              let trackDiv = $("<div>");
 
+              let trackNum = 0;
               let emptyArr = [];
               console.log(emptyArr);
 
@@ -51,10 +52,16 @@ $("#music-list").on("click", function (event) {
                         //console.log(response);
                         let tracks = response.items;
                         trackDiv.empty();
-                        tracks.forEach(function (element) {
-                            trackDiv.append("<li> "+element.track.name+"</li>");
 
+
+                        tracks.forEach(function (element) {
+                        console.log(trackNum);
+                        trackDiv.append("<li> " + ' / ' + '  '  + element.track.name +  ' ' + "</li>");
+                       
                         });
+                       
+            
+                       
                         // console.log("My 1st track div " +trackDiv.text());
 
                       //   $(".container").append(`
@@ -81,8 +88,9 @@ $("#music-list").on("click", function (event) {
                       $(".carousel").show();
 
                         $(".carousel").append(`
-                        <div class="carousel-item red white-text" href="${playlist.external_urls.spotify}" target="_blank">
+                        <div class="carousel-item blue-grey darken-4 white-text" href="${playlist.external_urls.spotify}" target="_blank">
                         <h2>${playlist.name}</h2>
+                        <a class="btn waves-effect white grey-text darken-text-2" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
                           <img id="playlist-image"src="${playlist.images[0].url}">
                           <h5> Top Ten Tracks </h5>
                           <p class="white-text"> ${trackDiv.text()}</p>
@@ -110,7 +118,7 @@ $("#music-list").on("click", function (event) {
               autoplay()
               function autoplay() {
                 $('.carousel').carousel('next');
-                setTimeout(autoplay, 10000);
+                setTimeout(autoplay, 8000);
                 }     
             })
         }
