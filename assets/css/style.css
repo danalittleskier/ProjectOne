@@ -12,6 +12,87 @@ html {
     background-size: cover;
 }
 
+/* styles the link buttons in the API content */
+a{
+    border-radius: 24px !important;
+    margin-left: 0;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+    font-weight: 700;
+    letter-spacing: 3px !important;
+}
+
+header{
+    text-align: center;
+    width: 100%;
+    padding: 80px 0;
+    background-image: radial-gradient(at top center, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.03) 100%), linear-gradient(to top, rgba(255,255,255,0.1) 0%, rgba(143,152,157,0.60) 100%);
+ 	background-blend-mode: normal, multiply;
+    background-blend-mode: screen;
+    /* animation magic */
+    transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    z-index: 9999;
+    top: 0;
+    position: fixed;
+    color: white;
+    letter-spacing: 8px;
+
+}
+
+
+header h1{
+    font-size: 24px;
+    text-indent: 40px;
+    font-weight:  bold;
+    margin: 0;
+    /* background-image: #E4E4E1; */
+}
+
+h2{
+    font-weight: 700;
+    color: #212121;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+h6{
+    color: #212121;
+    font-weight: 300;
+    font-size: 24pt;
+}
+
+label{
+    margin-left: 0;
+}
+
+button{
+    border-radius: 24px !important;
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+    font-weight: 700;
+    letter-spacing: 3px !important;
+    margin-bottom: 32px !important;
+}
+
+h6{
+    width: 100%;
+}
+
+p{
+    font-weight: 300;
+}
+
+span{
+    font-weight: 700;
+    color: #212121;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
 .backgroud{
    height: 100%;
 }
@@ -22,10 +103,6 @@ html {
 }
 
 
-
-#spacer{
-    padding-top: 16px;
-}
 
 .title{
     height: 100px;
@@ -38,24 +115,34 @@ html {
     /* opacity: 0.4; */
     background-color:rgba(255, 255, 255, 0.39);
 }
+.title{
+    height: 100px;
+    margin-top: 0;
+    text-align: left;
+    padding-top: 32px;
+    padding-left: 64px;
+    font-size: 32px;
+    color:white;
+    width: 100%;
+} 
 
-
-label{
-    margin-left: 0;
+.container{
+    padding-top:20px;
 }
 
-button{
-    border-radius: 24px !important;
-    
+
+
+
+.shrink{
+    padding: 20px 0;
 }
-
-/* body{
-  
-} */
-
 
 .carousel{
     height: 700px !important;
+}
+
+#spacer{
+    padding-top: 48px;
 }
 
 #playlist-image{
@@ -74,10 +161,6 @@ button{
 #car-container{
     display:flex;
    
-}
-
-h6{
-    width: 100%;
 }
 
 #playlist-info{
@@ -127,11 +210,8 @@ ul.dropdown-content.select-dropdown li span {
     background-color: #fafafa !important;
 }
 
-a{
-    border-radius: 24px !important;
-    margin-left: 0;
-}
 
-.container{
-    margin-left: 70px;
+/* keeps the text fields below the title */
+.everything-body{
+    padding-top: 250px;
 }
