@@ -1,4 +1,4 @@
-# ProjectOne
+# ProjectOne - Trails & Tunes
 
 This project uses the Spotify and Hiking Project API's to create an app for users to find hiking trails in their area and to also connect a playlist based on if they want to walk, hike, or run the trail for motivation. 
 
@@ -18,3 +18,7 @@ $ git clone git@github.com:danalittleskier/ProjectOne.git
 ```
 
 To run, open the index.html file in your favorite browser!
+
+### Screenshot
+
+![ScreenShot](https://raw.github.com/danalittleskier/ProjectOne/master/assets/images/Trails&TunesScreenshot.png)
