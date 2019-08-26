@@ -158,63 +158,8 @@ function callAPIs(){
         $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
       }
 
-      //add column headers to table dynamically
-      //originally had this hard coded into the HTML, but need to add it with JS, because I needed to empty the table, and it would emply the table headers too
-      // $("#results").append(
-      //   $(`
-      //   <tr>
-      //     <th>Name</th>
-      //     <th>Difficulty</th>
-      //     <th>Image</th>
-      //     <th>Length</th>
-      //     <th>Summary</th>
-      //   </tr>  
-      // `)
-      // );
-
       // Add a row to table for each trail
       trails.forEach(function (trail) {
-        // Creates link tag
-        // var trailLink = $("<a>").attr("href", trail.url).text(trail.name);
-        // // Creates name column
-        // var nameColumn = $("<td>").append(trailLink);
-        // // Creates difficulty column
-        // var difficultyColumn = $("<td>").text(trail.difficulty);
-        // // Creates trail image
-        // var trailImage = $("<img>").attr("src", trail.imgSmall);
-        // // Creates image column
-        // var imageColumn = $("<td>").append(trailImage);
-        // // Creates length column
-        // var lengthColumn = $("<td>").text(trail.length);
-        // // Creates summary column
-        // var summaryColumn = $("<td>").text(trail.summary); 
-        // // Creates row element and append columns to row
-        // var row = $("<tr>").append(nameColumn, difficultyColumn, imageColumn, lengthColumn, summaryColumn);
-        // // Append row to table
-        // $("#results").append(row);
-
-        //changed above code from JQuery tag building to JS template string
-        // $("#results").append(
-        //   $(`
-        //     <tr>
-        //       <td>
-        //         <a href="${trail.url}">${trail.name}</a>
-        //       </td>
-        //       <td>
-        //         ${difficultyMap[trail.difficulty]}
-        //       </td>
-        //       <td>
-        //         <img src="${trail.imgSmall}">
-        //       </td>
-        //       <td>
-        //         ${trail.length}
-        //       </td>
-        //       <td>
-        //         ${trail.summary}
-        //       </td>      
-        //     </tr>     
-        //   `)
-        // );
         $("#resultsCollapsible").append(`
         <li>
           <div class="collapsible-header grey lighten-3">
