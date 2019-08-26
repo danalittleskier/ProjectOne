@@ -61,7 +61,7 @@ $("#search").on("click", function (event) {
   let length = $("#length").val();
   let duration = $("#playlist-type").val();
 
-  // Store all content into localStorage
+  // Store all user data choices into localStorage
   localStorage.setItem("city", city);
   localStorage.setItem("intensity", intensity);
   localStorage.setItem("length", length);
@@ -70,23 +70,23 @@ $("#search").on("click", function (event) {
 
   // This tells them they need to pick parameters, if they are missing any
   $("#searchError").empty();
-  //let city = $("#city").val();
+
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
     // $("#searchError").append("You must provide a city to search.<br>");
     M.toast({ html: 'You must provide a city to search' });
   }
-  //let intensity = $("#intensity").val();
+
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
   if (hasIntensity === false) {
     $("#searchError").append("You must select a trail intensity.<br>");
   }
-  //let length = $("#length").val();
+
   let hasLength = length !== undefined && length !== null && length !== "";
   if (hasLength === false) {
     $("#searchError").append("You must select a trail length.<br>");
   }
-  //let duration = $("#playlist-type").val();
+
   let hasDuration = duration !== undefined && duration !== null && duration !== "";
   if (hasDuration === false) {
     $("#searchError").append("You must select a trail duration.<br>");
@@ -98,17 +98,18 @@ $("#search").on("click", function (event) {
   rerouteToSpotify();
 });
 
+//re routing need it in order to authenticate in Spotify - their requirement to use the API
 function rerouteToSpotify() {
   window.location.href = spotifyURL;
 }
-//only call the geocode and trails API when ready
+//add geocode and trails API calls to a function so it gets called only when ready and not on all page loads
 function callAPIs() {
 
+  //grab data from local storage which is saved before the page reload
   var dropdownCity = localStorage.getItem('city');
   var dropdownIntensity = localStorage.getItem('intensity');
   var dropdownLength = localStorage.getItem('length');
 
-  //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
   var geocodeAddress = dropdownCity;
   var geocodeKey = "&key=AIzaSyBA9Yt7UsjtvyCblUWBK0z6qb42GT8M8ok";
@@ -120,8 +121,6 @@ function callAPIs() {
     let geoReturn = response.results[0];
     let geoLat = geoReturn.geometry.location.lat;
     let geoLng = geoReturn.geometry.location.lng;
-    //not sure where to use this yet
-    //let geoAddr = geoReturn.formatted_address;
 
 
     let queryURL = "https://www.hikingproject.com/data/get-trails";
@@ -176,7 +175,6 @@ function callAPIs() {
         $("#resultsCollapsible").empty();
       } else {
         $("resultsCollapsible").hide();
-        // $("#searchError").append("<h5> 'Looks like you're a little off the trail, we couldn't find anything to match your search. Try adjusting the difficulty or increasing the distance' </h5>");
         $("#searchError").append("<div id='spacer'> <img id='empty' src= 'assets/images/trees2-01.svg'> </div>");
       }
 
@@ -198,14 +196,8 @@ function callAPIs() {
         </li>
       `);
 
-
-
-
       })
-      // $('.carousel.carousel-slider').carousel({
-      //   fullWidth: true,
-      //   indicators: true
-      // });
+
     });
   });
 } //function callAPIs
