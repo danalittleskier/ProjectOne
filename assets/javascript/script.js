@@ -34,6 +34,23 @@ $("#resultsCollapsible").hide();
 //hides the carousel until the user clicks on it
 $(".carousel").hide();
 
+let city = localStorage.getItem("city");
+let intensity = localStorage.getItem("intensity");
+let length = localStorage.getItem("length");
+let duration = localStorage.getItem("duration");
+
+if (city) {
+  $("#city").val(city);
+}
+if (intensity) {
+  $("#intensity").val(intensity);
+}
+if (length) {
+  $("#length").val(length);
+}
+if (duration) {
+  $("#playlist-type").val(duration);
+}
 
 // on click listener for the serach button
 $("#search").on("click", function (event) {

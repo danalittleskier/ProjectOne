@@ -1,4 +1,4 @@
-var dropdownPlaylist = localStorage.getItem('duration');
+
 var accessCode;
 var clientID = "ab78c9bfe2104f2e9e01b86f908541a9";
 
@@ -28,7 +28,7 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
             'Authorization': 'Bearer ' + accessCode
           },
           data : {
-            q: dropdownPlaylist,
+            q: localStorage.getItem('duration'),
             type: "playlist",
             limit: 10
           },
