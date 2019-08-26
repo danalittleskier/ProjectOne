@@ -1,130 +1,132 @@
 <!DOCTYPE html>
-<html lang="en"  style="background-image: url(assets/images/topoG.svg);">
+<html lang="en" style="background-image: url(assets/images/topoG.svg);">
 
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <!-- link to stylesheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
+    <!-- link to stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
 
-  <!-- google -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900&display=swap" rel="stylesheet">
+    <!-- google -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,900&display=swap" rel="stylesheet">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <!-- jQuery link -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- jQuery link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <!-- Materilialize -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materilialize -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <title>trails&tunes</title>
+    <title>trails&tunes</title>
 </head>
 
 <body>
-<div class="everything" >
-  <div class= "">
-    <header>
-    <h1 class="">TRAILS AND TUNES</h1>
-  </header>
-  </div>
-
-  <div class="container everything-body">
-
-    <div class="row">
-      <div class="input-field col s12 ">
-        <input id="city" type="text" class="validate black-text">
-        <label for="city">City</label>
-      </div>
-   
-
-    
-      <div class="input-field col s6 m4 black-text ">
-        <select id="intensity">
-          <option value="" disabled selected>Choose the intensity</option>
-          <option selected="selected" value="green">Easy</option>
-          <option value="greenBlue">Easy to Moderate</option>
-          <option value="blue">Moderate</option>
-          <option value="blueBlack">Moderate to Difficult</option>
-          <option value="black">Difficult</option>
-        </select>
-        <label>Instensity</label>
-      </div>
-      <div class="input-field col s6 m4">
-        <select id="length">
-          <option value="" disabled selected>Choose the length</option>
-          <option selected="selected" value="1">0 - 5 miles</option>
-          <option value="2">5 - 10 miles</option>
-          <option value="3">10 - 15 miles</option>
-          <option value="4">15 + miles</option>
-        </select>
-        <label>Length</label>
-      </div>
-      <div class="input-field col s6 m4 icon-blue">
-        <select id="playlist-type">
-          <option value="" disabled selected>Choose the playlist type</option>
-          <option selected="selected" value="hiking">Hiking</option>
-          <option value="running">Running</option>
-          <option value="walking">Walking</option>
-        </select>
-        <label>Duration</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <button id="search" class="btn waves-effect waves-light teal lighten-3" type="button" name="action">Search
-          <!-- <i class="material-icons right">send</i> -->
-        </button>
-        <div id="searchError">
+    <div class="everything">
+        <div class="">
+            <header>
+                <h1 class="">TRAILS AND TUNES</h1>
+            </header>
         </div>
-      </div>
-      
-    </div>
 
-    <!-- <div class="row">
+        <div class="container everything-body">
+
+            <div class="row">
+                <div class="input-field col s12 ">
+                    <input id="city" type="text" class="validate black-text">
+                    <label for="city">City</label>
+                </div>
+
+
+
+                <div class="input-field col s6 m4 black-text ">
+                    <select id="intensity">
+                        <option value="" disabled selected>Choose the intensity</option>
+                        <option selected="selected" value="green">Easy</option>
+                        <option value="greenBlue">Easy to Moderate</option>
+                        <option value="blue">Moderate</option>
+                        <option value="blueBlack">Moderate to Difficult</option>
+                        <option value="black">Difficult</option>
+                    </select>
+                    <label>Instensity</label>
+                </div>
+                <div class="input-field col s6 m4">
+                    <select id="length">
+                        <option value="" disabled selected>Choose the length</option>
+                        <option selected="selected" value="1">0 - 5 miles</option>
+                        <option value="2">5 - 10 miles</option>
+                        <option value="3">10 - 15 miles</option>
+                        <option value="4">15 + miles</option>
+                    </select>
+                    <label>Length</label>
+                </div>
+                <div class="input-field col s6 m4 icon-blue">
+                    <select id="playlist-type">
+                        <option value="" disabled selected>Choose the playlist type</option>
+                        <option selected="selected" value="hiking">Hiking</option>
+                        <option value="running">Running</option>
+                        <option value="walking">Walking</option>
+                        <option value="mountain zen">Mountain Zen</option>
+                    </select>
+                    <label>Duration</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    <button id="search" class="btn waves-effect waves-light teal lighten-3" type="button"
+                        name="action">Search
+                        <!-- <i class="material-icons right">send</i> -->
+                    </button>
+                    <div id="searchError">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <div class="row">
             <div class="col s12">
               <button id="music-list" class="btn waves-effect waves-light teal lighten-3" type="button" name="action">Music List
                 <i class="material-icons right">send</i> 
               </button>
             </div>
           </div> -->
-          
-    <div class="row">
-      <div class="col s12">
-        <ul id="resultsCollapsible" class="collapsible expandable">
-        </ul>
-        <!-- <table id="resultsTable">
+
+            <div class="row">
+                <div class="col s12">
+                    <ul id="resultsCollapsible" class="collapsible expandable">
+                    </ul>
+                    <!-- <table id="resultsTable">
         </table> -->
-      </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Spotify results-->
+        <div class="container">
+            <div id="height" class="carousel carousel-slider center">
+                <div class="carousel-fixed-item center">
+                    <!-- <a class="btn waves-effect white grey-text darken-text-2">Open In Spotify</a> -->
+                </div>
+            </div>
+        </div>
+
     </div>
 
-  </div>
-
- <!--Spotify results-->
-  <div class="container" >
-      <div id="height" class="carousel carousel-slider center">
-          <div class="carousel-fixed-item center">
-            <!-- <a class="btn waves-effect white grey-text darken-text-2">Open In Spotify</a> -->
-          </div>
-      </div>
-  </div>
-
-</div>
 
 
 
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.js"></script>
-
-  <script src="assets/javascript/localhost.js"></script>
-  <script src="assets/javascript/spotify.js"></script>
-  <script src="assets/javascript/script.js"></script>
-  <script src="assets/javascript/materialize.js"></script>
+    <script src="assets/javascript/localhost.js"></script>
+    <script src="assets/javascript/spotify.js"></script>
+    <script src="assets/javascript/script.js"></script>
+    <script src="assets/javascript/materialize.js"></script>
 
 
 </body>
