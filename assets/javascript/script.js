@@ -4,21 +4,21 @@
 //     var elems = document.querySelectorAll('.dropdown-trigger');
 //     var instances = M.Dropdown.init(elems, {});
 //   });
-$(function(){
+$(function () {
   var shrinkHeader = 300;
-   $(window).scroll(function() {
-     var scroll = getCurrentScroll();
-       if ( scroll >= shrinkHeader ) {
-            $('.title').addClass('shrink');
-         }
-         else {
-             $('.title').removeClass('shrink');
-         }
-   });
- function getCurrentScroll() {
-     return window.pageYOffset || document.documentElement.scrollTop;
-     }
- });
+  $(window).scroll(function () {
+    var scroll = getCurrentScroll();
+    if (scroll >= shrinkHeader) {
+      $('.title').addClass('shrink');
+    }
+    else {
+      $('.title').removeClass('shrink');
+    }
+  });
+  function getCurrentScroll() {
+    return window.pageYOffset || document.documentElement.scrollTop;
+  }
+});
 
 //global variables for color difficulties
 var difficultyMap = {
@@ -34,6 +34,7 @@ $("#resultsCollapsible").hide();
 //hides the carousel until the user clicks on it
 $(".carousel").hide();
 
+//remembers the user's selection
 let city = localStorage.getItem("city");
 let intensity = localStorage.getItem("intensity");
 let length = localStorage.getItem("length");
@@ -66,14 +67,14 @@ $("#search").on("click", function (event) {
   localStorage.setItem("length", length);
   localStorage.setItem("duration", duration);
 
-  
+
   // This tells them they need to pick parameters, if they are missing any
   $("#searchError").empty();
   //let city = $("#city").val();
   let hasCity = city !== undefined && city !== null && city !== "";
   if (hasCity === false) {
     // $("#searchError").append("You must provide a city to search.<br>");
-    M.toast({html: 'You must provide a city to search'});
+    M.toast({ html: 'You must provide a city to search' });
   }
   //let intensity = $("#intensity").val();
   let hasIntensity = intensity !== undefined && intensity !== null && intensity !== "";
@@ -97,16 +98,16 @@ $("#search").on("click", function (event) {
   rerouteToSpotify();
 });
 
-function rerouteToSpotify(){
+function rerouteToSpotify() {
   window.location.href = spotifyURL;
 }
 //only call the geocode and trails API when ready
-function callAPIs(){
+function callAPIs() {
 
   var dropdownCity = localStorage.getItem('city');
-    var dropdownIntensity = localStorage.getItem('intensity');
-    var dropdownLength = localStorage.getItem('length');
-    
+  var dropdownIntensity = localStorage.getItem('intensity');
+  var dropdownLength = localStorage.getItem('length');
+
   //getGeocode();
   var geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?address=";
   var geocodeAddress = dropdownCity;
@@ -138,7 +139,7 @@ function callAPIs(){
       //intensity dropdown
       let trails = response.trails.filter(function (trail) {
         if (trail.difficulty === dropdownIntensity) {
-          console.log("Trail difficulty "+trail.difficulty+ " dropdown intensity "+dropdownIntensity);
+          console.log("Trail difficulty " + trail.difficulty + " dropdown intensity " + dropdownIntensity);
           return true;
         }
       })
@@ -155,6 +156,10 @@ function callAPIs(){
           maxLength = 10;
           break;
         case "3":
+          minLength = 10;
+          maxLength = 15;
+          break;
+        case "4":
           minLength = 15;
           break;
       }
@@ -193,16 +198,16 @@ function callAPIs(){
         </li>
       `);
 
-    
 
-   
-    })
-    // $('.carousel.carousel-slider').carousel({
-    //   fullWidth: true,
-    //   indicators: true
-    // });
+
+
+      })
+      // $('.carousel.carousel-slider').carousel({
+      //   fullWidth: true,
+      //   indicators: true
+      // });
+    });
   });
-});
 } //function callAPIs
 
 
