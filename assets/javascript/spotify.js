@@ -97,7 +97,7 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
                           <div>
                           <h6 id= 'playlist-info'> Playlist Preview </h6>
                           <p id='tracks' class="grey-text"> ${trackDiv.text()}</p>
-                          <a class="btn waves-effect waves-light grey darken-1 spotify-link" href="${playlist.external_urls.spotify}" target="_blank" >Open In Spotify</a>
+                          <a class="btn waves-effect waves-light grey darken-1 spotify-link" href="${playlist.external_urls.spotify}"target="_blank">Open In Spotify</a>
                           </div>
                           </div>
                         </div>
@@ -114,7 +114,6 @@ var spotifyURL = "https://accounts.spotify.com/authorize?client_id=" + clientID 
 
             Promise.all(emptyArr).then(function(){
               $('.carousel.carousel-slider').carousel({
-                fullWidth: true,
                 indicators: true,
                 dist: 0,
                 padding: 0,
