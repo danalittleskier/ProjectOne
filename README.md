@@ -11,10 +11,11 @@ This project uses the Spotify and Hiking Project API's to create an app for user
 
 ## Getting Started
 
-To use this project, simply clone the repository.
+To use this project, simply click the link below.
 
 ``` 
-$ git clone git@github.com:danalittleskier/ProjectOne.git
+https://rokhva.github.io/updated-portfolio/
+
 ```
 
 To run, open the index.html file in your favorite browser!
